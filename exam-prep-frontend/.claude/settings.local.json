@@ -1,0 +1,9 @@
+{
+  "permissions": {
+    "allow": [
+      "PowerShell(try { $body = '{\"emailOrUsername\":\"test@test.com\",\"password\":\"test123\"}'; $response = Invoke-WebRequest -Uri \"http://localhost:8080/api/auth/login\" -Method POST -ContentType \"application/json\" -Body $body -TimeoutSec 5 -ErrorAction Stop; Write-Host \"Status: $\\($response.StatusCode\\)\"; Write-Host $response.Content } catch { Write-Host \"Status: $\\($_.Exception.Response.StatusCode.value__\\)\"; $stream = $_.Exception.Response.GetResponseStream\\(\\); $reader = New-Object System.IO.StreamReader\\($stream\\); Write-Host \"Body: $\\($reader.ReadToEnd\\(\\)\\)\" })",
+      "PowerShell($body = '{\"emailOrUsername\":\"test@test.com\",\"password\":\"test123\"}'; try { $response = Invoke-WebRequest -Uri \"http://localhost:8080/api/auth/login\" -Method POST -ContentType \"application/json\" -Body $body -Headers @{\"Origin\"=\"http://localhost:5173\"} -TimeoutSec 5 -ErrorAction Stop; Write-Host \"Status: $\\($response.StatusCode\\)\"; $response.Headers | Format-Table -AutoSize } catch { Write-Host \"Status: $\\($_.Exception.Response.StatusCode.value__\\)\"; $response2 = $_.Exception.Response; $response2.Headers | ForEach-Object { Write-Host $_ } })",
+      "PowerShell(Start-Process \"http://localhost:5173\")"
+    ]
+  }
+}
