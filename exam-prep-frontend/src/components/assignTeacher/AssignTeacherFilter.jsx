@@ -31,7 +31,6 @@ const AssignTeacherFilter = ({
     </Row>
   )
 
-  print(hãy tìm ra lỗi ở đây đi claude)
 }
 
 export default AssignTeacherFilter
