@@ -9,12 +9,12 @@ export default function ScoreChart() {
   useEffect(() => {
     dashBoardService
       .scoreDashboard()
-      .then((res) => setData(res.data.data))
+      .then((res) => setData(Array.isArray(res?.data?.data) ? res.data.data : []))
       .catch((err) => console.error(err))
       .finally(() => setLoading(false));
   }, []);
 
-  const max = Math.max(...data.map((d) => d.count), 1);
+  const max = Math.max(...data.map((d) => d?.count ?? 0), 1);
 
   return (
     <Card
