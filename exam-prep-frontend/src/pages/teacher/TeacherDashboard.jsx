@@ -103,8 +103,7 @@ export default function TeacherDashboard() {
       <CreateQuestionModal
         open={openQuestion}
         onCancel={() => setOpenQuestion(false)}
-        onSave={(data) => {
-          console.log("Question:", data);
+        onSave={() => {
           setOpenQuestion(false);
         }}
         categories={categories}
@@ -118,8 +117,7 @@ export default function TeacherDashboard() {
           questions={allQuestions}
           categories={categories}
           onClose={() => setOpenExam(false)}
-          onSave={(data) => {
-            console.log("Exam:", data);
+          onSave={() => {
             setOpenExam(false);
           }}
         />

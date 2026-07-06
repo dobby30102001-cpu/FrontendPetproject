@@ -46,7 +46,6 @@ const Bailuyentap = () => {
         const classId = user?.classId;
 
         if (!classId) {
-          console.log("Chưa có classId");
           return;
         }
 
@@ -185,8 +184,6 @@ const Bailuyentap = () => {
           navigate(`/student/thithu/${examId}`, {
             state: examData,
           });
-
-          console.log(data);
         } catch (err) {
           console.error(err);
           alert("Không thể làm lại bài luyện tập");
