@@ -49,7 +49,7 @@ export async function getQuestionsByExamId(examId) {
 
 export async function getClassesByTeacher(page, size) {
   return api
-    .get(`/admin/classes/teacher?page=${page}&size=${size}`)
+    .get(`/v1/admin/classes/teacher?page=${page}&size=${size}`)
     .then((response) => {
       return response;
     })

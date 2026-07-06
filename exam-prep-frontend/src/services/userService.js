@@ -27,11 +27,11 @@ export const getUsers = (params = {}) => {
 }
 //Cho user hoạt động lại
 export const unlockUser = (id) => {
-  return api.put(`/auth/admin/account/unlock/${id}`);
+  return api.put(`/v1/admin/security/account/unlock/${id}`);
 }
 //Khóa user
 export const lockUser = (id) => {
-  return api.put(`/auth/admin/account/lock/${id}`);
+  return api.put(`/v1/admin/security/account/lock/${id}`);
 }
 
 export const getStudentsByClass = (classId) => {
@@ -77,9 +77,9 @@ export const deleteUser = (id) => {
 }
 
 
-//admin/classes/count
+//v1/admin/classes/count
 export const getClassCount = () => {
-  return api.get("/admin/classes/count");
+  return api.get("/v1/admin/classes/count");
 }
 ///admin/users/students/count
 export const getStudentCount = () => {
