@@ -8,8 +8,8 @@ const AssignTeacherFilter = ({
   handleClear
 }) => {
   return (
-    
-<Row gutter={[12, 12]} align="middle" justify="space-between">
+
+    <Row gutter={[12, 12]} align="middle" justify="space-between">
       {/* SEARCH */}
       <Col xs={24} sm={24} md={8}>
         <Input
@@ -30,6 +30,7 @@ const AssignTeacherFilter = ({
       </Col>
     </Row>
   )
+
 }
 
 export default AssignTeacherFilter

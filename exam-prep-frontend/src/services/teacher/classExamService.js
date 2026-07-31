@@ -2,7 +2,7 @@ import api from "../apiClient";
 
 const classExamService = {
 
-    updateExam: (id, data) => api.put(`/admin/classes/${id}/exams`, data),
+    updateExam: (id, data) => api.put(`/v1/admin/classes/${id}/exams`, data),
 
 };
 

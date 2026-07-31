@@ -1,105 +1,104 @@
-# FrontendPetproject
+# Exam Prep Frontend（オンライン試験システム UI）
 
-Dự án frontend được xây dựng với React + Vite, sử dụng các thư viện hiện đại như Ant Design, Bootstrap, Axios và React Router.
+React + Vite で作った、オンライン試験システムのフロントエンドです。
+バックエンドは [Petproject/exam-prep-backend](https://github.com/dobby30102001-cpu/Petproject) と連携します。
 
-## Công nghệ sử dụng
+## 画面構成
 
-- **React 19** – Thư viện UI chính
-- **Vite** – Build tool nhanh cho frontend
-- **Ant Design (antd)** – Bộ component UI đa dạng
-- **Bootstrap + React Bootstrap** – Framework CSS responsive
-- **React Router DOM v7** – Điều hướng trang
-- **Axios** – Gọi HTTP API
-- **React Toastify** – Thông báo toast
-- **Font Awesome** – Bộ icon phong phú
+| ロール | 画面例 |
+|--------|--------|
+| 学生 | ダッシュボード、練習問題、模擬試験、本試験、受験履歴、お気に入り |
+| 教員 | ダッシュボード、問題管理、試験管理、担当クラス、学生一覧 |
+| 管理者 | ダッシュボード、ユーザー管理、クラス管理、教員割当 |
 
-## Yêu cầu hệ thống
+## 使用技術
 
-Trước khi bắt đầu, hãy đảm bảo máy bạn đã cài đặt:
+| 分類 | 技術 |
+|------|------|
+| ライブラリ | React 19, React Router v7 |
+| ビルドツール | Vite 7 |
+| UI | Ant Design 6, Bootstrap 5, Font Awesome |
+| HTTP | Axios |
+| 通知 | React Toastify |
+| 日付 | Day.js |
+| Lint | ESLint 9 |
 
-- [Node.js](https://nodejs.org/) **v18** trở lên (khuyến nghị v20 LTS)
-- **npm** v9+ (đi kèm với Node.js) hoặc **yarn**
+## 動作要件
 
-Kiểm tra phiên bản hiện tại:
+- Node.js v20 LTS 以上
+- npm v10 以上
 
-```bash
-node -v
-npm -v
-```
+## セットアップ
 
-## Hướng dẫn cài đặt
-
-### 1. Clone dự án
+### 1. リポジトリを取得
 
 ```bash
 git clone https://github.com/dobby30102001-cpu/FrontendPetproject.git
-cd FrontendPetproject
+cd FrontendPetproject/exam-prep-frontend
 ```
 
-### 2. Di chuyển vào thư mục frontend
-
-```bash
-cd exam-prep-frontend
-```
-
-### 3. Cài đặt các dependencies
+### 2. 依存関係のインストール
 
 ```bash
 npm install
 ```
 
-> Lệnh này sẽ tải toàn bộ các thư viện cần thiết được khai báo trong `package.json`.
+### 3. 環境変数の設定
 
-### 4. Chạy dự án ở chế độ development
+`.env.example` をコピーして `.env` を作成し、バックエンドの URL を設定します。
+
+```bash
+cp .env.example .env
+```
+
+```env
+VITE_API_URL=http://localhost:8080/api
+```
+
+### 4. 開発サーバー起動
 
 ```bash
 npm run dev
 ```
 
-Sau khi chạy thành công, mở trình duyệt và truy cập:
+ブラウザで `http://localhost:5173` を開いて動作確認できます。
+
+## よく使うコマンド
+
+| コマンド | 内容 |
+|----------|------|
+| `npm run dev` | 開発サーバー（HMR 有効） |
+| `npm run build` | 本番用ビルド |
+| `npm run preview` | ビルド結果をローカルで確認 |
+| `npm run lint` | ESLint によるコードチェック |
+
+## ディレクトリ構成
 
 ```
-http://localhost:5173
+src/
+├── assets/         # 画像・フォント
+├── components/     # 再利用可能なコンポーネント
+├── context/        # React Context（認証情報など）
+├── hooks/          # カスタムフック
+├── layouts/        # ヘッダー・サイドバー等の共通レイアウト
+├── pages/
+│   ├── admin/      # 管理者画面
+│   ├── auth/       # ログイン・登録
+│   ├── student/    # 学生画面
+│   └── teacher/    # 教員画面
+├── route/          # ルーティング設定
+├── services/       # API 呼び出し（Axios ラッパー）
+└── App.jsx
 ```
 
-## Các lệnh thường dùng
+## 工夫した点
 
-| Lệnh | Mô tả |
-|------|-------|
-| `npm run dev` | Khởi động server development với hot-reload |
-| `npm run build` | Build dự án cho môi trường production |
-| `npm run preview` | Xem trước bản build production trên local |
-| `npm run lint` | Kiểm tra lỗi code với ESLint |
+- **API クライアントを `services/apiClient.js` に一元化**し、JWT の付与・401 時の自動ログアウトを共通処理化。各画面から `api.get('/...')` と書くだけで済みます。
+- **ロール別にルート・レイアウトを分離**（`admin/`, `teacher/`, `student/`）することで、権限外のページに素で入れないようにしました。
+- **Ant Design と Bootstrap の併用**：管理系のテーブル・フォームは Ant Design、レイアウトの余白・グリッドは Bootstrap に寄せる、というルールを決めて衝突を防ぎました。
+- **`VITE_API_URL` を必須化**し、未設定なら起動時にコンソールで警告。デプロイ環境の設定漏れで「なぜか通信できない」問題を防ぎます。
 
-## Cấu trúc thư mục
+## つまずいた点・学んだこと
 
-```
-exam-prep-frontend/
-├── public/             # File tĩnh (favicon, ảnh public)
-├── src/
-│   ├── assets/         # Hình ảnh, font, icon
-│   ├── components/     # Các component tái sử dụng
-│   ├── context/        # React Context (quản lý state toàn cục)
-│   ├── hooks/          # Custom hooks
-│   ├── layouts/        # Layout chung (header, sidebar, footer)
-│   ├── pages/          # Các trang của ứng dụng
-│   ├── route/          # Cấu hình routing
-│   ├── services/       # Các hàm gọi API (Axios)
-│   ├── App.jsx         # Component gốc
-│   ├── main.jsx        # Điểm khởi đầu ứng dụng
-│   └── index.css       # CSS toàn cục
-├── index.html
-├── package.json
-├── vite.config.js
-└── eslint.config.js
-```
-
-## Gặp sự cố?
-
-- **Lỗi `node_modules` không tìm thấy**: Chạy lại `npm install`
-- **Cổng 5173 đã được sử dụng**: Vite tự động chuyển sang cổng khác, hoặc bạn có thể thêm `--port <số_cổng>` vào lệnh dev
-- **Lỗi phiên bản Node.js**: Hãy nâng cấp Node.js lên v18 trở lên
-
-## Đóng góp
-
-Mọi đóng góp đều được chào đón! Vui lòng tạo một **Issue** hoặc **Pull Request** nếu bạn muốn cải thiện dự án.
+- 最初は Axios のインスタンスを画面ごとに作っていて、JWT の付け替えが漏れる事故が起きました。共通クライアント化してからは 401 制御が一箇所で完結し、コード量も減りました。
+- Ant Design v6 で一部 API が変わっており、v5 のサンプルコードをそのまま使うとエラーになる箇所がありました。公式マイグレーションガイドを読む習慣がつきました。

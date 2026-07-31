@@ -1,10 +1,10 @@
 import { useEffect, useState } from "react";
 import { Button } from "antd";
 import { PlusOutlined } from "@ant-design/icons";
-import UserHeader from "../../components/user/UserHeader";
+import UserHeader from "../../components/common/UserHeader";
 import StatsCards from "../../components/common/StatsCards";
-import CreateQuestionModal from "../../components/modal/teacher/Createquestionmodal";
-import ExamFormModal from "../../components/modal/teacher/ExamFormModal";
+import CreateQuestionModal from "../../components/teacher/modals/Createquestionmodal";
+import ExamFormModal from "../../components/teacher/modals/ExamFormModal";
 import ScoreChart from "../../components/teacher/dashboard/ScoreChart";
 import QuickActions from "../../components/teacher/dashboard/QuickActions";
 import questionService from "../../services/teacher/questionService";
@@ -43,7 +43,7 @@ export default function TeacherDashboard() {
           page: 0,
           size: 1000,
         });
-        setAllQuestions(res.data.data.content);
+        setAllQuestions(res?.data?.data?.content ?? []);
       } catch (err) {
         console.error("Lỗi load questions:", err);
       }
@@ -55,7 +55,7 @@ export default function TeacherDashboard() {
     const fetchCategories = async () => {
       try {
         const res = await questionService.getAllCategory();
-        setCategories(res.data.data.content);
+        setCategories(res?.data?.data?.content ?? []);
       } catch (err) {
         console.error("Lỗi load categories:", err);
       }
@@ -103,8 +103,7 @@ export default function TeacherDashboard() {
       <CreateQuestionModal
         open={openQuestion}
         onCancel={() => setOpenQuestion(false)}
-        onSave={(data) => {
-          console.log("Question:", data);
+        onSave={() => {
           setOpenQuestion(false);
         }}
         categories={categories}
@@ -118,8 +117,7 @@ export default function TeacherDashboard() {
           questions={allQuestions}
           categories={categories}
           onClose={() => setOpenExam(false)}
-          onSave={(data) => {
-            console.log("Exam:", data);
+          onSave={() => {
             setOpenExam(false);
           }}
         />

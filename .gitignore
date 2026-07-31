@@ -1,0 +1,23 @@
+# ============================================================
+# Root .gitignore for FrontendPetproject
+# Nested projects (e.g. exam-prep-frontend/) also have their own
+# .gitignore. Git honors all of them.
+# ============================================================
+
+# Environment files (may contain secrets)
+.env
+.env.local
+.env.*.local
+
+# IDE / editor
+.idea/
+.vscode/
+*.iml
+
+# Claude Code local settings (per-machine)
+**/.claude/settings.local.json
+**/.claude/scripts/
+
+# OS junk
+.DS_Store
+Thumbs.db

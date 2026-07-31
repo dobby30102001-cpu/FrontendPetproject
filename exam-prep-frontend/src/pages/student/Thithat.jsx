@@ -107,7 +107,6 @@ const Thithat = () => {
       }
 
       const res = await submitExam(attemptId, answerList);
-      console.log(res);
 
       setResult(res.data); // ✅ đúng
       setOpenModal(true);

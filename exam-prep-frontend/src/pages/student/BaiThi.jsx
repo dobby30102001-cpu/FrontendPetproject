@@ -20,7 +20,6 @@ const BaiThi = () => {
       navigate(`/student/thi/${examId}`, {
         state: data,
       });
-      console.log(data);
     } catch (err) {
       const msg = err.response?.data?.message;
 
@@ -47,7 +46,6 @@ const BaiThi = () => {
           navigate(`/student/thi/${examId}`, {
             state: data,
           });
-          console.log(data);
         } catch (err) {
           console.error(err);
           alert("Không thể làm lại bài thi");
@@ -75,7 +73,6 @@ const BaiThi = () => {
         const classId = user?.classId;
 
         if (!classId) {
-          console.log("Chưa có classId");
           return;
         }
 
