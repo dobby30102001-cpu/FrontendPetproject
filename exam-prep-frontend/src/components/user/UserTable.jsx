@@ -20,9 +20,9 @@ const UserTable = ({
     }
 
     const labels = {
-      admin: 'Quản trị viên',
-      teacher: 'Giáo viên',
-      student: 'Học sinh'
+      admin: '管理者',
+      teacher: '教員',
+      student: '学生'
     }
 
     return <Tag color={colors[role]}>{labels[role]}</Tag>
@@ -30,40 +30,40 @@ const UserTable = ({
 
   const columns = [
     {
-      title: 'STT',
+      title: 'No.',
       render: (_, __, index) => page * 5 + index + 1
     },
-    { title: 'Email', dataIndex: 'email' },
-    { title: 'Username', dataIndex: 'username' },
-    { title: 'Họ tên', dataIndex: 'fullName' },
+    { title: 'メールアドレス', dataIndex: 'email' },
+    { title: 'ユーザー名', dataIndex: 'username' },
+    { title: '氏名', dataIndex: 'fullName' },
     {
-      title: 'Vai trò',
+      title: '役割',
       dataIndex: 'role',
       render: getRoleTag
     },
     {
-      title: 'Trạng thái',
+      title: 'ステータス',
       dataIndex: 'status',
       render: (status, record) => {
         const isActive = status === 'ACTIVED'
 
         return (
           <Popconfirm
-            title={isActive ? 'Vô hiệu hóa người dùng?' : 'Kích hoạt người dùng?'}
+            title={isActive ? 'ユーザーを無効にしますか？' : 'ユーザーを有効にしますか？'}
             onConfirm={() => onToggleStatus(record)}
           >
             <Switch
               checked={isActive}
-              checkedChildren="Hoạt động"
-              unCheckedChildren="Khóa"
+              checkedChildren="有効"
+              unCheckedChildren="ロック"
             />
           </Popconfirm>
         )
       }
     },
-    { title: 'Ngày tạo', dataIndex: 'createdAt' },
+    { title: '作成日', dataIndex: 'createdAt' },
     {
-      title: 'Hành động',
+      title: '操作',
       render: (_, record) => (
         <Button
           type="text"

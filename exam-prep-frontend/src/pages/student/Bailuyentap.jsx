@@ -27,8 +27,8 @@ const Bailuyentap = () => {
     if (!time) return "N/A";
     const [h, m] = time.split(":");
     return parseInt(h) > 0
-      ? `${parseInt(h)} giờ ${parseInt(m)} phút`
-      : `${parseInt(m)} phút`;
+      ? `${parseInt(h)}時間${parseInt(m)}分`
+      : `${parseInt(m)}分`;
   };
 
 
@@ -64,7 +64,7 @@ const Bailuyentap = () => {
         setExams(mappedData);
       } catch (err) {
         console.error("Lỗi API:", err);
-        setError("Không thể tải dữ liệu");
+        setError("データを読み込めませんでした");
       } finally {
         setLoading(false);
       }
@@ -110,12 +110,12 @@ const Bailuyentap = () => {
       const data = res.data?.data;
 
       if (!data) {
-        throw new Error("Không có dữ liệu bài thi");
+        throw new Error("試験データがありません");
       }
 
       const attemptId = resolveAttemptId(data);
       if (attemptId == null) {
-        throw new Error("API start không trả về attemptId");
+        throw new Error("start API から attemptId が返されませんでした");
       }
 
       // 👉 Map dữ liệu giống Thithat đang dùng (cần attemptId để nộp bài)
@@ -139,9 +139,9 @@ const Bailuyentap = () => {
       if (
         err.response?.data?.message?.includes("ongoing attempt")
       ) {
-        alert("Bạn đang có bài thi chưa nộp!");
+        alert("未提出の試験があります！");
       } else {
-        alert("Không thể bắt đầu bài thi");
+        alert("試験を開始できませんでした");
       }
     } finally {
       setLoading(false);
@@ -151,10 +151,10 @@ const Bailuyentap = () => {
   //Them function restart thi
   const handleRestartExam = (examId) => {
     Modal.confirm({
-      title: "Xác nhận làm lại bài luyện tập",
-      content: "Bạn sẽ mất kết quả hiện tại. Bạn có chắc muốn làm lại?",
-      okText: "Làm lại",
-      cancelText: "Hủy",
+      title: "練習をやり直す確認",
+      content: "現在の結果は失われます。本当にやり直しますか？",
+      okText: "やり直す",
+      cancelText: "キャンセル",
       onOk: async () => {
         try {
           setLoading(true);
@@ -163,12 +163,12 @@ const Bailuyentap = () => {
           const data = res.data?.data;
 
           if (!data) {
-            throw new Error("Không có dữ liệu bài thi");
+            throw new Error("試験データがありません");
           }
 
           const attemptId = resolveAttemptId(data);
           if (attemptId == null) {
-            throw new Error("API restart không trả về attemptId");
+            throw new Error("restart API から attemptId が返されませんでした");
           }
 
           // Map dữ liệu giống Thithat đang dùng (cần attemptId để nộp bài)
@@ -186,7 +186,7 @@ const Bailuyentap = () => {
           });
         } catch (err) {
           console.error(err);
-          alert("Không thể làm lại bài luyện tập");
+          alert("練習をやり直せませんでした");
         }
       }
     })
@@ -195,9 +195,9 @@ const Bailuyentap = () => {
 
   return (
     <div style={{ padding: "24px" }}>
-      <h1>Danh sách bài thi luyện tập</h1>
+      <h1>練習試験一覧</h1>
       <p style={{ marginBottom: "32px", color: "#666" }}>
-        Chọn bài thi để bắt đầu luyện tập
+        練習を開始する試験を選択してください
       </p>
 
       {/* SEARCH */}
@@ -205,7 +205,7 @@ const Bailuyentap = () => {
         <Input
           className="search-input"
           prefix={<FontAwesomeIcon icon={faSearch} />}
-          placeholder="Tìm kiếm bài thi theo tiêu đề, môn học..."
+          placeholder="タイトル、科目で試験を検索..."
           value={searchTerm}
           onChange={(e) => setSearchTerm(e.target.value)}
           style={{ maxWidth: 400 }}
@@ -225,7 +225,7 @@ const Bailuyentap = () => {
       ) : filteredData.length === 0 ? (
         /* EMPTY */
         <div style={{ marginTop: 50 }}>
-          <Empty description="Không có bài thi" />
+          <Empty description="試験がありません" />
         </div>
       ) : (
         /* DATA */
@@ -256,7 +256,7 @@ const Bailuyentap = () => {
                 <h3>{exam.title}</h3>
 
                 <p style={{ color: "#888" }}>
-                  <FontAwesomeIcon icon={faBook} /> {exam.questions} câu hỏi
+                  <FontAwesomeIcon icon={faBook} /> {exam.questions} 問
                 </p>
 
                 <Tag color="blue">{exam.subject}</Tag>
@@ -276,7 +276,7 @@ const Bailuyentap = () => {
                     type="primary"
                     onClick={() => handleStartExam(exam.id)}
                   >
-                    Luyện tập
+                    練習
                   </Button>
 
                   <Button
@@ -289,7 +289,7 @@ const Bailuyentap = () => {
                     }}
                     onClick={() => handleRestartExam(exam.id)}
                   >
-                    Làm lại
+                    やり直す
                   </Button>
                 </div>
               </Card>

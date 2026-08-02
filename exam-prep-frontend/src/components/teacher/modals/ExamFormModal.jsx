@@ -22,9 +22,9 @@ const { Text } = Typography;
 const { Option } = Select;
 
 const DIFF_MAP = {
-  EASY: { color: "success", label: "Dễ" },
-  MEDIUM: { color: "warning", label: "Trung bình" },
-  HARD: { color: "error", label: "Khó" },
+  EASY: { color: "success", label: "易しい" },
+  MEDIUM: { color: "warning", label: "普通" },
+  HARD: { color: "error", label: "難しい" },
 };
 
 export default function ExamFormModal({
@@ -132,12 +132,12 @@ export default function ExamFormModal({
   return (
     <>
       <Modal
-        title={exam ? "Chỉnh sửa đề thi" : "Tạo đề thi"}
+        title={exam ? "試験を編集" : "試験を作成"}
         open
         onCancel={onClose}
         onOk={handleOk}
-        okText={exam ? "Lưu" : "Tạo đề thi"}
-        cancelText="Hủy"
+        okText={exam ? "保存" : "試験を作成"}
+        cancelText="キャンセル"
         width={680}
       >
         <Form
@@ -163,17 +163,17 @@ export default function ExamFormModal({
             <Col span={12}>
               <Form.Item
                 name="code"
-                label="Mã đề"
-                rules={[{ required: true, message: "Bắt buộc" }]}
+                label="試験コード"
+                rules={[{ required: true, message: "必須項目です" }]}
               >
-                <Input placeholder="VD: EX006" />
+                <Input placeholder="例：EX006" />
               </Form.Item>
             </Col>
             <Col span={12}>
               <Form.Item
                 name="duration"
-                label="Thời gian (phút)"
-                rules={[{ required: true, message: "Bắt buộc" }]}
+                label="時間（分）"
+                rules={[{ required: true, message: "必須項目です" }]}
               >
                 <InputNumber
                   min={1}
@@ -186,18 +186,18 @@ export default function ExamFormModal({
 
           <Form.Item
             name="title"
-            label="Tên đề thi"
-            rules={[{ required: true, message: "Bắt buộc" }]}
+            label="試験名"
+            rules={[{ required: true, message: "必須項目です" }]}
           >
-            <Input placeholder="VD: Java Advanced Test" />
+            <Input placeholder="例：Java Advanced Test" />
           </Form.Item>
 
           <Form.Item
             name="category"
-            label="Danh mục"
-            rules={[{ required: true, message: "Bắt buộc" }]}
+            label="カテゴリ"
+            rules={[{ required: true, message: "必須項目です" }]}
           >
-            <Select placeholder="Chọn danh mục">
+            <Select placeholder="カテゴリを選択">
               {(categories || []).map((c) => (
                 <Option key={c.id} value={c.name}>
                   {c.name}
@@ -209,7 +209,7 @@ export default function ExamFormModal({
           <div style={{ borderTop: "1px solid #f0f0f0", paddingTop: 16 }}>
             {/* Label Cài đặt */}
             <Text strong style={{ fontSize: 16 }}>
-              ⚙️ Cài đặt đề thi
+              ⚙️ 試験設定
             </Text>
 
             <Row gutter={12} style={{ marginTop: 12, alignItems: "center" }}>
@@ -217,12 +217,12 @@ export default function ExamFormModal({
               <Col span={8}>
                 <Form.Item
                   name="examType"
-                  label="Loại đề thi"
-                  rules={[{ required: true, message: "Bắt buộc" }]}
+                  label="試験種別"
+                  rules={[{ required: true, message: "必須項目です" }]}
                 >
-                  <Select placeholder="Chọn loại đề">
-                    <Option value="PRACTICE">Luyện tập</Option>
-                    <Option value="OFFICIAL">Thi thật</Option>
+                  <Select placeholder="種別を選択">
+                    <Option value="PRACTICE">練習</Option>
+                    <Option value="OFFICIAL">本試験</Option>
                   </Select>
                 </Form.Item>
               </Col>
@@ -231,7 +231,7 @@ export default function ExamFormModal({
               <Col span={7} style={{ textAlign: "center", marginLeft: 20 }}>
                 <Form.Item
                   name="reviewAllowed"
-                  label="Cho phép xem lại"
+                  label="復習を許可"
                   valuePropName="checked"
                   initialValue={false}
                 >
@@ -246,14 +246,14 @@ export default function ExamFormModal({
               <Col span={8}>
                 <Form.Item
                   name="passScore"
-                  label="Điểm để pass"
-                  rules={[{ required: true, message: "Bắt buộc" }]}
+                  label="合格点"
+                  rules={[{ required: true, message: "必須項目です" }]}
                 >
                   <InputNumber
                     min={0}
                     max={100}
                     style={{ width: "100%" }}
-                    placeholder="VD: 50"
+                    placeholder="例：50"
                   />
                 </Form.Item>
               </Col>
@@ -271,19 +271,19 @@ export default function ExamFormModal({
               marginBottom: 10,
             }}
           >
-            <Text strong>Chọn câu hỏi từ ngân hàng</Text>
+            <Text strong>問題バンクから問題を選択</Text>
             <Space>
               <Text type="secondary">
-                Đã chọn: <b>{selectedIds.length}</b>
+                選択済み: <b>{selectedIds.length}</b>
               </Text>
-              <Tooltip title="Tạo câu hỏi mới và thêm vào đề">
+              <Tooltip title="新しい問題を作成して試験に追加">
                 <Button
                   type="primary"
                   size="small"
                   icon={<PlusOutlined />}
                   onClick={() => setCreateQOpen(true)}
                 >
-                  Tạo câu hỏi
+                  問題を作成
                 </Button>
               </Tooltip>
             </Space>
@@ -294,7 +294,7 @@ export default function ExamFormModal({
             <Col flex={1}>
               <Input
                 prefix={<SearchOutlined />}
-                placeholder="Tìm câu hỏi..."
+                placeholder="問題を検索..."
                 value={qSearch}
                 onChange={(e) => setQSearch(e.target.value)}
               />
@@ -304,9 +304,9 @@ export default function ExamFormModal({
                 value={qCat}
                 onChange={setQCat}
                 style={{ width: 150 }}
-                placeholder="Tất cả"
+                placeholder="すべて"
               >
-                <Option value="">Tất cả</Option>
+                <Option value="">すべて</Option>
                 {categories.map((c) => (
                   <Option key={c.id} value={c.name}>
                     {c.name}
@@ -335,7 +335,7 @@ export default function ExamFormModal({
                   display: "block",
                 }}
               >
-                Không có câu hỏi nào. Hãy tạo câu hỏi mới!
+                問題がありません。新しい問題を作成してください！
               </Text>
             )}
             {filteredQ.map((q) => {

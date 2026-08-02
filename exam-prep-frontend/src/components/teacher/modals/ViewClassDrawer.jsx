@@ -6,7 +6,7 @@ const { Title, Text } = Typography;
 export default function ViewClassDrawer({ data, onClose }) {
   return (
     <Drawer
-      title="Chi tiết lớp học"
+      title="クラス詳細"
       open={!!data}
       onClose={onClose}
       style={{ width: 500 }}
@@ -17,12 +17,12 @@ export default function ViewClassDrawer({ data, onClose }) {
             <Title level={5}>{data.name}</Title>
 
             <Space>
-              <Tag color="blue">{data.studentCount} học sinh</Tag>
-              <Tag color="purple">{data.exams.length} đề thi</Tag>
+              <Tag color="blue">{data.studentCount} 名の学生</Tag>
+              <Tag color="purple">{data.exams.length} 件の試験</Tag>
             </Space>
           </Card>
 
-          <Divider>Danh sách đề thi</Divider>
+          <Divider>試験一覧</Divider>
 
           <div>
             <List
@@ -47,14 +47,14 @@ export default function ViewClassDrawer({ data, onClose }) {
 
                     {/* Row info */}
                     <Space wrap size="small">
-                      <Tag color="blue">Code: {e.code}</Tag>
-                      <Tag color="green">Phân loại: {e.category?.name}</Tag>
-                      <Tag>Thời gian: {e.duration}</Tag>
+                      <Tag color="blue">コード: {e.code}</Tag>
+                      <Tag color="green">カテゴリ: {e.category?.name}</Tag>
+                      <Tag>時間: {e.duration}</Tag>
                     </Space>
 
                     {/* Date */}
                     <Text type="secondary" style={{ fontSize: 12 }}>
-                      {dayjs(e.createDate).format("DD/MM/YYYY HH:mm")}
+                      {dayjs(e.createDate).format("YYYY/MM/DD HH:mm")}
                     </Text>
                   </Space>
                 </Card>

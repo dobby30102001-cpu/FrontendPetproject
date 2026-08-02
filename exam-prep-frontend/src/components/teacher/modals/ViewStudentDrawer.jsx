@@ -6,7 +6,7 @@ const { Title, Text } = Typography;
 export default function ViewStudentDrawer({ student, onClose }) {
   return (
     <Drawer
-      title="Chi tiết bài thi"
+      title="試験詳細"
       open={!!student}
       onClose={onClose}
       style={{ width: 850 }}
@@ -18,30 +18,30 @@ export default function ViewStudentDrawer({ student, onClose }) {
           <Divider />
 
           <Text>
-            <b>Mã đề:</b> {student.exam?.code}
+            <b>試験コード:</b> {student.exam?.code}
           </Text>
           <br />
 
           <Text>
-            <b>Học sinh:</b>{" "}
+            <b>学生:</b>{" "}
             {student.student?.firstName} {student.student?.lastName}
           </Text>
           <br />
 
           <Text>
-            <b>Thời gian bắt đầu:</b> {dayjs(student.startTime).format("DD/MM/YYYY HH:mm")}
+            <b>開始時刻:</b> {dayjs(student.startTime).format("YYYY/MM/DD HH:mm")}
           </Text>
           <br />
 
           <Text>
-            <b>Thời gian kết thúc:</b> {dayjs(student.endTime).format("DD/MM/YYYY HH:mm")}
+            <b>終了時刻:</b> {dayjs(student.endTime).format("YYYY/MM/DD HH:mm")}
           </Text>
           <br />
 
           <Divider />
 
           <Text>
-            <b>Điểm:</b>{" "}
+            <b>得点:</b>{" "}
             <Tag
               color={
                 student.score >= 8

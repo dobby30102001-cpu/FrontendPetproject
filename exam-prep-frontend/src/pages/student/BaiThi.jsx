@@ -24,9 +24,9 @@ const BaiThi = () => {
       const msg = err.response?.data?.message;
 
       if (msg?.includes("ongoing attempt")) {
-        alert("Bạn đang có bài thi chưa nộp!");
+        alert("未提出の試験があります！");
       } else {
-        alert(msg || "Không thể bắt đầu bài thi");
+        alert(msg || "試験を開始できませんでした");
       }
     }
   };
@@ -34,10 +34,10 @@ const BaiThi = () => {
   //Them function restart thi
   const handleRestartExam = (examId) => {
     Modal.confirm({
-      title: "Xác nhận làm lại bài thi",
-      content: "Bạn sẽ mất kết quả hiện tại. Bạn có chắc muốn làm lại?",
-      okText: "Làm lại",
-      cancelText: "Hủy",
+      title: "試験をやり直す確認",
+      content: "現在の結果は失われます。本当にやり直しますか？",
+      okText: "やり直す",
+      cancelText: "キャンセル",
       onOk: async () => {
         try {
           const res = await restartExam(examId);
@@ -48,7 +48,7 @@ const BaiThi = () => {
           });
         } catch (err) {
           console.error(err);
-          alert("Không thể làm lại bài thi");
+          alert("試験をやり直せませんでした");
         }
       }
     })
@@ -58,8 +58,8 @@ const BaiThi = () => {
     if (!time) return "N/A";
     const [h, m] = time.split(":");
     return parseInt(h) > 0
-      ? `${parseInt(h)} giờ ${parseInt(m)} phút`
-      : `${parseInt(m)} phút`;
+      ? `${parseInt(h)}時間${parseInt(m)}分`
+      : `${parseInt(m)}分`;
   };
 
   useEffect(() => {
@@ -131,16 +131,16 @@ const BaiThi = () => {
 
   return (
     <div style={{ padding: "24px" }}>
-      <h1>Danh sách bài thi thật</h1>
+      <h1>本試験一覧</h1>
       <p style={{ marginBottom: "32px", color: "#666" }}>
-        Chọn bài thi để bắt đầu thi
+        受験する試験を選択してください
       </p>
 
       <div style={{ marginBottom: "24px" }}>
         <Input
           className="search-input"
           prefix={<FontAwesomeIcon icon={faSearch} />}
-          placeholder="Tìm kiếm bài thi theo tiêu đề, môn học..."
+          placeholder="タイトル、科目で試験を検索..."
           value={searchTerm}
           onChange={(e) => setSearchTerm(e.target.value)}
           style={{ maxWidth: 400 }}
@@ -148,9 +148,9 @@ const BaiThi = () => {
       </div>
 
       {loading ? (
-        <p style={{ textAlign: "center" }}>Đang tải...</p>
+        <p style={{ textAlign: "center" }}>読み込み中...</p>
       ) : filteredData.length === 0 ? (
-        <p style={{ textAlign: "center" }}>Không có bài thi</p>
+        <p style={{ textAlign: "center" }}>試験がありません</p>
       ) : (
         <Row gutter={[24, 24]}>
           {filteredData.map((exam) => (
@@ -179,7 +179,7 @@ const BaiThi = () => {
                 <h3>{exam.title}</h3>
 
                 <p style={{ color: "#888" }}>
-                  <FontAwesomeIcon icon={faBook} /> {exam.questions} câu hỏi
+                  <FontAwesomeIcon icon={faBook} /> {exam.questions} 問
                 </p>
 
                 <Tag color="blue">{exam.subject}</Tag>
@@ -193,7 +193,7 @@ const BaiThi = () => {
                   type="primary"
                   onClick={() => handleStartExam(exam.id)}
                 >
-                  Thi
+                  受験
                 </Button>
 
                 <Button
@@ -206,7 +206,7 @@ const BaiThi = () => {
                   }}
                   onClick={() => handleRestartExam(exam.id)}
                 >
-                  Làm lại
+                  やり直す
                 </Button>
               </Card>
             </Col>

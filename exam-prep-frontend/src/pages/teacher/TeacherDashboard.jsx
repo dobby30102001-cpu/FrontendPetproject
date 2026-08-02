@@ -24,9 +24,9 @@ export default function TeacherDashboard() {
         const data = res.data.data;
 
         setStats([
-          { title: "Tổng số đề thi", value: data.totalExams },
-          { title: "Tổng số câu hỏi", value: data.totalQuestions },
-          { title: "Tổng số học sinh", value: data.totalStudents },
+          { title: "試験の総数", value: data.totalExams },
+          { title: "問題の総数", value: data.totalQuestions },
+          { title: "学生の総数", value: data.totalStudents },
         ]);
       } catch (err) {
         console.error("Lỗi load stats:", err);
@@ -68,8 +68,8 @@ export default function TeacherDashboard() {
     <div className="teacher-question-page">
       {/* HEADER */}
       <UserHeader
-        title="Dashboard giáo viên"
-        description="Tổng quan hệ thống thi và hoạt động gần đây"
+        title="教員ダッシュボード"
+        description="試験システムの概要と最近のアクティビティ"
         extra={
           <>
             <Button
@@ -77,7 +77,7 @@ export default function TeacherDashboard() {
               icon={<PlusOutlined />}
               onClick={() => setOpenQuestion(true)}
             >
-              Tạo câu hỏi
+              問題を作成
             </Button>
 
             <Button
@@ -85,7 +85,7 @@ export default function TeacherDashboard() {
               icon={<PlusOutlined />}
               onClick={() => setOpenExam(true)}
             >
-              Tạo đề thi
+              試験を作成
             </Button>
           </>
         }

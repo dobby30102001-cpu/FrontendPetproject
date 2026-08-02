@@ -6,15 +6,15 @@ import TableActions from "../common/TableActions";
 const ExamTable = ({ data, loading, onPreview, onEdit, onDelete }) => {
   const columns = [
     {
-      title: "Mã đề thi",
+      title: "試験コード",
       dataIndex: "code",
     },
     {
-      title: "Tên đề thi",
+      title: "試験名",
       dataIndex: "title",
     },
     {
-      title: "Loại đề thi",
+      title: "試験種別",
       dataIndex: "examType",
       render: (type) => {
         let color = "default";
@@ -22,11 +22,11 @@ const ExamTable = ({ data, loading, onPreview, onEdit, onDelete }) => {
         switch (type) {
           case "PRACTICE":
             color = "success";
-            text = "Luyện tập";
+            text = "練習";
             break;
           case "OFFICIAL":
             color = "error";
-            text = "Thi thật";
+            text = "本試験";
             break;
           default:
             color = "default";
@@ -37,25 +37,25 @@ const ExamTable = ({ data, loading, onPreview, onEdit, onDelete }) => {
 
     },
     {
-      title: "Danh mục",
+      title: "カテゴリ",
       dataIndex: "category",
     },
     {
-      title: "Thời gian",
+      title: "時間",
       dataIndex: "duration",
-      render: (d) => <Tag color="blue">{d} phút</Tag>,
+      render: (d) => <Tag color="blue">{d} 分</Tag>,
     },
     {
-      title: "Số câu hỏi",
+      title: "問題数",
       dataIndex: "questions",
     },
     {
-      title: "Ngày tạo",
+      title: "作成日",
       dataIndex: "createDate",
-      render: (date) => dayjs(date).format("DD/MM/YYYY"),
+      render: (date) => dayjs(date).format("YYYY/MM/DD"),
     },
     {
-      title: "Hành động",
+      title: "操作",
       align: "center",
       render: (_, record) => (
         <TableActions

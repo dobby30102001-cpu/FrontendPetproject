@@ -25,7 +25,7 @@ const Add = ({
 
   return (
     <Modal
-      title={isEditMode ? 'Cập nhật người dùng' : 'Thêm người dùng'}
+      title={isEditMode ? 'ユーザーを更新' : 'ユーザーを追加'}
       open={open}
       onCancel={onCancel}
       onOk={() => form.submit()}
@@ -40,8 +40,8 @@ const Add = ({
         {/* USERNAME */}
         <Form.Item
           name="username"
-          label="Tên đăng nhập"
-          rules={[{ required: true, message: 'Vui lòng nhập username' }]}
+          label="ユーザー名"
+          rules={[{ required: true, message: 'ユーザー名を入力してください' }]}
         >
           <Input disabled={isEditMode} />
         </Form.Item>
@@ -49,10 +49,10 @@ const Add = ({
         {/* EMAIL */}
         <Form.Item
           name="email"
-          label="Email"
+          label="メールアドレス"
           rules={[
-            { required: true, message: 'Vui lòng nhập email' },
-            { type: 'email', message: 'Email không hợp lệ' }
+            { required: true, message: 'メールアドレスを入力してください' },
+            { type: 'email', message: 'メールアドレスの形式が正しくありません' }
           ]}
         >
           <Input />
@@ -61,8 +61,8 @@ const Add = ({
         {/* FULL NAME */}
         <Form.Item
           name="fullName"
-          label="Họ và tên"
-          rules={[{ required: true, message: 'Vui lòng nhập họ tên' }]}
+          label="氏名"
+          rules={[{ required: true, message: '氏名を入力してください' }]}
         >
           <Input />
         </Form.Item>
@@ -70,14 +70,14 @@ const Add = ({
         {/* ROLE */}
         <Form.Item
           name="role"
-          label="Vai trò"
-          rules={[{ required: true, message: 'Vui lòng chọn vai trò' }]}
+          label="役割"
+          rules={[{ required: true, message: '役割を選択してください' }]}
         >
           <Select
             options={[
-              { value: 'admin', label: 'Admin' },
-              { value: 'teacher', label: 'Giáo viên' },
-              { value: 'student', label: 'Học sinh' }
+              { value: 'admin', label: '管理者' },
+              { value: 'teacher', label: '教員' },
+              { value: 'student', label: '学生' }
             ]}
           />
         </Form.Item>
@@ -86,7 +86,7 @@ const Add = ({
         {isEditMode && (
           <Form.Item
             name="status"
-            label="Trạng thái"
+            label="ステータス"
             valuePropName="checked"
             getValueFromEvent={(checked) =>
               checked ? 'ACTIVED' : 'LOCKED'
@@ -96,8 +96,8 @@ const Add = ({
             })}
           >
             <Switch
-              checkedChildren="Hoạt động"
-              unCheckedChildren="Khóa"
+              checkedChildren="有効"
+              unCheckedChildren="ロック"
             />
           </Form.Item>
         )}

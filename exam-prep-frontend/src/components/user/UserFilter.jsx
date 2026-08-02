@@ -23,7 +23,7 @@ const UserFilter = ({
         <Input
           className="search-input"
           prefix={<FontAwesomeIcon icon={faSearch} />}
-          placeholder="Tìm kiếm theo username, họ tên hoặc email"
+          placeholder="ユーザー名、氏名、またはメールアドレスで検索"
           value={searchTerm}
           onChange={(e) => setSearchTerm(e.target.value)}
           allowClear
@@ -34,19 +34,19 @@ const UserFilter = ({
       <Col>
         <Space>
           <Select
-            placeholder="Vai trò"
+            placeholder="役割"
             value={roleFilter}
             onChange={setRoleFilter}
             allowClear
             style={{ width: 150 }}
           >
-            <Select.Option value="admin">Quản trị viên</Select.Option>
-            <Select.Option value="teacher">Giáo viên</Select.Option>
-            <Select.Option value="student">Học sinh</Select.Option>
+            <Select.Option value="admin">管理者</Select.Option>
+            <Select.Option value="teacher">教員</Select.Option>
+            <Select.Option value="student">学生</Select.Option>
           </Select>
 
           <Button onClick={handleClear}>
-            <FontAwesomeIcon icon={faArrowRotateLeft} /> Xóa bộ lọc
+            <FontAwesomeIcon icon={faArrowRotateLeft} /> フィルターをクリア
           </Button>
         </Space>
       </Col>

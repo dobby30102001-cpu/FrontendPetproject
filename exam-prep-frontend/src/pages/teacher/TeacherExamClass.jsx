@@ -36,7 +36,7 @@ export default function TeacherExamsClass() {
         setTotal(result.totalElements);
       } catch (error) {
         console.error(error);
-        toast.error("Không tải được danh sách lớp học");
+        toast.error("クラス一覧の読み込みに失敗しました");
       }
     }
     fetchClasses();
@@ -55,7 +55,7 @@ export default function TeacherExamsClass() {
       setAllExams(result.content);
     } catch (error) {
       console.error(error);
-      toast.error("Không tải được danh sách đề thi");
+      toast.error("試験一覧の読み込みに失敗しました");
     }
 
     setOpenModal(true);
@@ -65,13 +65,13 @@ export default function TeacherExamsClass() {
     try {
       // Call API to save changes
       await classExamService.updateExam(classId, examIds);
-      toast.success("Lưu thay đổi thành công");
+      toast.success("変更を保存しました");
 
       setReloadEdit((prev) => !prev);
       setOpenModal(false);
     } catch (error) {
       console.error("Error saving class exams: ", error);
-      toast.error("Lỗi khi lưu thay đổi");
+      toast.error("変更の保存に失敗しました");
     }
   };
 
@@ -100,8 +100,8 @@ export default function TeacherExamsClass() {
   return (
     <div className="teacher-question-page">
       <UserHeader
-        title="Quản lý lớp thi"
-        description="Gán đề thi cho lớp học và quản lý lịch thi"
+        title="試験クラス管理"
+        description="試験をクラスに割り当て、試験スケジュールを管理"
       />
 
       {/* Filters */}
@@ -112,7 +112,7 @@ export default function TeacherExamsClass() {
             value={search}
             onChange={(e) => setSearch(e.target.value)}
             prefix={<SearchOutlined style={{ color: "#bfbfbf" }} />}
-            placeholder="Tìm kiếm tên lớp..."
+            placeholder="クラス名で検索..."
             allowClear
             onClear={() => setSearch("")}
           />
@@ -124,12 +124,12 @@ export default function TeacherExamsClass() {
         <Select
           value={sortClass || undefined}
           onChange={(value) => setSortClass(value || "")}
-          placeholder="Lọc theo"
+          placeholder="並び替え"
           allowClear
           style={{ width: 170 }}
         >
-          <Select.Option value="class">Lớp</Select.Option>
-          <Select.Option value="exam">Số đề thi</Select.Option>
+          <Select.Option value="class">クラス</Select.Option>
+          <Select.Option value="exam">試験数</Select.Option>
         </Select>
       </div>
       {/* TABLE */}

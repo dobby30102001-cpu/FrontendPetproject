@@ -6,11 +6,11 @@ import BaseTable from "../common/BaseTable";
 const QuestionTable = ({ data, loading, onView, onEdit, onDelete }) => {
   const columns = [
     {
-      title: "Câu hỏi",
+      title: "問題",
       dataIndex: "content",
     },
     {
-      title: "Mức độ",
+      title: "難易度",
       dataIndex: "difficulty",
       render: (d) => {
         const color =
@@ -19,16 +19,16 @@ const QuestionTable = ({ data, loading, onView, onEdit, onDelete }) => {
       },
     },
     {
-      title: "Danh mục",
+      title: "カテゴリ",
       dataIndex: "category",
     },
     {
-      title: "Ngày tạo",
+      title: "作成日",
       dataIndex: "createDate",
-      render: (date) => dayjs(date).format("DD/MM/YYYY"),
+      render: (date) => dayjs(date).format("YYYY/MM/DD"),
     },
     {
-      title: "Hành động",
+      title: "操作",
       align: "center",
       render: (_, record) => (
         <TableActions

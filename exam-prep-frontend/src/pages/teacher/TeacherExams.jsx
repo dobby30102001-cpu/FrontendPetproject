@@ -59,7 +59,7 @@ const TeacherExams = () => {
       setTotal(result.totalElements);
     } catch (error) {
       console.error(error);
-      toast.error("Không tải được đề thi");
+      toast.error("試験の読み込みに失敗しました");
     }
   };
 
@@ -73,7 +73,7 @@ const TeacherExams = () => {
         const res = await questionService.getAllCategory();
         setCategories(res.data.data.content);
       } catch (err) {
-        message.error("Load category failed");
+        message.error("カテゴリの読み込みに失敗しました");
       }
     }
     fetchCategories();
@@ -89,7 +89,7 @@ const TeacherExams = () => {
         setAllQuestions(response.data.data.content);
       } catch (error) {
         console.error(error);
-        toast.error("Không tải được danh sách câu hỏi");
+        toast.error("問題一覧の読み込みに失敗しました");
       }
     }
     fetchQuestion();
@@ -100,7 +100,7 @@ const TeacherExams = () => {
       const response = await examsAPI.getQuestionsByExamId(exam.id);
       setPreviewExam({ ...exam, questions: response.data.data });
     } catch (error) {
-      toast.error("Lỗi khi tải danh sách câu hỏi");
+      toast.error("問題一覧の読み込みに失敗しました");
     }
   };
 
@@ -111,7 +111,7 @@ const TeacherExams = () => {
       setEditingExam({ ...exam, questionIds: questions.map((q) => q.id) });
       setIsModalOpen(true);
     } catch (error) {
-      toast.error("Lỗi khi tải danh sách câu hỏi");
+      toast.error("問題一覧の読み込みに失敗しました");
     }
   };
 
@@ -123,10 +123,10 @@ const TeacherExams = () => {
   const handleDelete = async (examId) => {
     try {
       await examService.deleteExam(examId);
-      toast.success("Xóa đề thi thành công");
+      toast.success("試験を削除しました");
       setReload((prev) => !prev);
     } catch (error) {
-      toast.error("Có lỗi xảy ra khi xóa đề thi");
+      toast.error("試験の削除に失敗しました");
       console.error(error);
     }
   };
@@ -135,10 +135,10 @@ const TeacherExams = () => {
     try {
       if (editingExam) {
         await examService.updateExam(editingExam.id, data);
-        toast.success("Cập nhật đề thi thành công");
+        toast.success("試験を更新しました");
       } else {
         await examService.createExam(data);
-        toast.success("Tạo đề thi thành công");
+        toast.success("試験を作成しました");
       }
       setReload((prev) => !prev);
       setIsModalOpen(false);
@@ -148,7 +148,7 @@ const TeacherExams = () => {
         error.response?.data?.message || // backend trả về
         error.response?.data ||          // fallback nếu trả string
         error.message ||                 // lỗi JS
-        "Có lỗi xảy ra khi lưu đề thi";
+        "試験の保存に失敗しました";
 
       toast.error(errorMessage);
       console.error(error);
@@ -160,10 +160,10 @@ const TeacherExams = () => {
       const res = await questionService.createQuestion(payload);
       const newQuestion = res.data.data;
       setAllQuestions((prev) => [...prev, newQuestion]);
-      message.success("Tạo câu hỏi thành công");
+      message.success("問題を作成しました");
       return newQuestion;
     } catch (err) {
-      message.error("Tạo câu hỏi thất bại");
+      message.error("問題の作成に失敗しました");
       console.error(err);
       throw err;
     }
@@ -174,17 +174,17 @@ const TeacherExams = () => {
   return (
     <div className="teacher-question-page">
       <UserHeader
-        title="Quản lý đề thi"
-        description="Tạo, chỉnh sửa, xóa và quản lý đề thi"
-        buttonText="Thêm đề thi"
+        title="試験管理"
+        description="試験を作成、編集、削除、管理"
+        buttonText="試験を追加"
         handleAdd={handleAdd}
       />
 
       <StatsCards
         items={[
-          { title: "Tổng số đề thi", value: total },
-          { title: "Tổng số câu hỏi", value: allQuestions.length },
-          { title: "Danh mục", value: totalCategories },
+          { title: "試験の総数", value: total },
+          { title: "問題の総数", value: allQuestions.length },
+          { title: "カテゴリ", value: totalCategories },
         ]}
       />
 
@@ -193,14 +193,14 @@ const TeacherExams = () => {
         <div style={{ flex: 1, minWidth: 220 }}>
           <Input
             prefix={<SearchOutlined style={{ color: "#bfbfbf" }} />}
-            placeholder="Tìm kiếm tên đề thi..."
+            placeholder="試験名で検索..."
             allowClear
             onChange={(e) => setSearchInput(e.target.value)}
           />
         </div>
         <div className="filter-divider" />
         <Select
-          placeholder="Danh mục"
+          placeholder="カテゴリ"
           allowClear
           style={{ width: 150 }}
           onChange={(v) => {
@@ -218,7 +218,7 @@ const TeacherExams = () => {
         <div style={{ display: "flex", gap: 8 }}>
           {/* From date */}
           <DatePicker
-            placeholder="Từ"
+            placeholder="開始日"
             allowClear
             style={{ width: 130 }}
             onChange={(date, dateString) => {
@@ -232,7 +232,7 @@ const TeacherExams = () => {
 
           {/* To date */}
           <DatePicker
-            placeholder="Đến"
+            placeholder="終了日"
             allowClear
             style={{ width: 130 }}
             onChange={(date, dateString) => {
@@ -246,7 +246,7 @@ const TeacherExams = () => {
         </div>
 
         <Select
-          placeholder="Sắp xếp"
+          placeholder="並び替え"
           style={{ width: 160 }}
           allowClear
           onChange={(value) => {
@@ -254,8 +254,8 @@ const TeacherExams = () => {
             setPage(0);
           }}
         >
-          <Select.Option value="desc">Mới → Cũ</Select.Option>
-          <Select.Option value="asc">Cũ → Mới</Select.Option>
+          <Select.Option value="desc">新しい順</Select.Option>
+          <Select.Option value="asc">古い順</Select.Option>
         </Select>
       </div>
 

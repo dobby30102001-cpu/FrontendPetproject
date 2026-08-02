@@ -18,7 +18,7 @@ export default function ScoreChart() {
 
   return (
     <Card
-      title={<h3 style={{ margin: 0 }}>📊 Phân bố điểm</h3>}
+      title={<h3 style={{ margin: 0 }}>📊 得点分布</h3>}
       style={{
         flex: 2,
         borderRadius: 16,
@@ -39,7 +39,7 @@ export default function ScoreChart() {
         >
           {data.map((d) => (
             <div key={d.range} style={{ flex: 1, textAlign: "center" }}>
-              <Tooltip title={`Số lượng: ${d.count}`}>
+              <Tooltip title={`件数: ${d.count}`}>
                 <div
                   style={{
                     height: `${(d.count / max) * 120}px`,

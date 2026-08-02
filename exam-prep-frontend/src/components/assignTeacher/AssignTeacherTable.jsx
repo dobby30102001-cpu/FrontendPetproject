@@ -20,27 +20,27 @@ const AssignTeacherTable = ({
 
   const columns = [
     {
-      title: 'STT',
+      title: 'No.',
       align: 'center',
       render: (_, __, index) => page * 5 + index + 1
     },
     {
-      title: 'Lớp',
+      title: 'クラス',
       dataIndex: 'name',
       key: 'name'
     },
     {
-      title: 'Số sinh viên',
+      title: '学生数',
       dataIndex: 'studentCount',
       key: 'studentCount'
     },
     {
-      title: 'Số giáo viên',
+      title: '教員数',
       dataIndex: 'teacherCount',
       key: 'teacherCount'
     },
     {
-      title: 'Hành động',
+      title: '操作',
       key: 'action',
       align: 'center',
       render: (_, record) => (

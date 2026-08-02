@@ -33,24 +33,24 @@ const LichSuThi = () => {
 
   return {
     id: item.id,
-    title: item.exam?.title || "Không có tiêu đề",
+    title: item.exam?.title || "タイトルなし",
     date: item.startTime
-      ? new Date(item.startTime).toLocaleDateString("vi-VN")
+      ? new Date(item.startTime).toLocaleDateString("ja-JP")
       : "N/A",
 
     // ✅ thêm dòng này
     endTime: item.endTime
-      ? new Date(item.endTime).toLocaleTimeString("vi-VN")
-      : "Chưa hoàn thành",
+      ? new Date(item.endTime).toLocaleTimeString("ja-JP")
+      : "未完了",
 
     duration: item.exam?.duration || "0",
-    type: item.exam?.examType === "OFFICIAL" ? "Thi thật" : "Luyện tập",
+    type: item.exam?.examType === "OFFICIAL" ? "本試験" : "練習",
     score: item.score ?? 0,
     correct: item.correctCount ?? 0,
     wrong: item.wrongCount ?? 0,
     total,
     timeDone: `${item.timeSpentSeconds ?? 0}s`,
-    status: isPass ? "ĐẠT" : "KHÔNG ĐẠT",
+    status: isPass ? "合格" : "不合格",
     isPass,
     rawData: item,
   };
@@ -76,9 +76,9 @@ const LichSuThi = () => {
 
   return (
     <div style={{ padding: "24px" }}>
-      <h1>Lịch sử thi thật</h1>
+      <h1>本試験履歴</h1>
       <p style={{ marginBottom: "32px", color: "#666" }}>
-        Xem lại lịch sử thi thật của bạn
+        本試験の履歴を確認できます
       </p>
 
       {/* SEARCH */}
@@ -86,7 +86,7 @@ const LichSuThi = () => {
                  <Input
                    className="search-input"
                    prefix={<FontAwesomeIcon icon={faSearch} />}
-                   placeholder="Tìm kiếm bài thi theo tiêu đề, môn học..."
+                   placeholder="タイトル、科目で試験を検索..."
                    value={searchTerm}
                    onChange={(e) => setSearchTerm(e.target.value)}
                    style={{ maxWidth: 400 }}
@@ -134,7 +134,7 @@ const LichSuThi = () => {
               {/* SCORE */}
               <div>
                 <Progress percent={exam.score} size="small" /> {/* 🔥 fix */}
-                <b>Điểm: {exam.score}/100</b>
+                <b>得点: {exam.score}/100</b>
               </div>
               {/* STATS */}
               <div style={{ marginTop: 10 }}>
@@ -146,14 +146,14 @@ const LichSuThi = () => {
                         : "default"
                     }
                   />
-                  Đúng: {exam.correct}/{exam.total}
+                  正解: {exam.correct}/{exam.total}
                 </div>
 
                 <div style={{ color: "red" }}>
-                  Sai: {exam.wrong}
+                  不正解: {exam.wrong}
                 </div>
 
-                <div>Thời gian: {exam.timeDone}</div>
+                <div>時間: {exam.timeDone}</div>
               </div>
 
               {/* BUTTON */}
@@ -197,7 +197,7 @@ const LichSuThi = () => {
               cursor: "pointer",
             }}
           >
-            Tải thêm kết quả 
+            さらに読み込む
           </button>
         </div>
       )}

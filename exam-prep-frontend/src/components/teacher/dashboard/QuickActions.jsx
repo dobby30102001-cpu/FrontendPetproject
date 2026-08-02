@@ -11,19 +11,19 @@ export default function QuickActions() {
 
   const actions = [
     {
-      label: "Quản lý đề thi",
+      label: "試験管理",
       icon: <FileTextOutlined />,
       color: "#1677ff",
       path: "/teacher/exams",
     },
     {
-      label: "Ngân hàng câu hỏi",
+      label: "問題バンク",
       icon: <FormOutlined />,
       color: "#52c41a",
       path: "/teacher/questions",
     },
     {
-      label: "Xem điểm học viên",
+      label: "学生の得点を確認",
       icon: <TeamOutlined />,
       color: "#fa8c16",
       path: "/teacher/students",
@@ -32,7 +32,7 @@ export default function QuickActions() {
 
   return (
     <Card
-      title={<h3 style={{ margin: 0 }}>⚡ Truy cập nhanh</h3>}
+      title={<h3 style={{ margin: 0 }}>⚡ クイックアクセス</h3>}
       style={{
         flex: 1,
         borderRadius: 16,

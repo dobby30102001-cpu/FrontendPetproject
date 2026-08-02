@@ -20,7 +20,7 @@ export default function AssignExamModal({
 
   const handleOk = () => {
     if (!examId) {
-      message.warning("Vui lòng chọn đề thi!");
+      message.warning("試験を選択してください！");
       return;
     }
 
@@ -29,7 +29,7 @@ export default function AssignExamModal({
 
   return (
     <Modal
-      title="Gán đề thi cho lớp"
+      title="クラスに試験を割り当て"
       open={open}
       onCancel={onClose}
       onOk={handleOk}
@@ -37,11 +37,11 @@ export default function AssignExamModal({
     >
       {/* Chọn đề */}
       <div style={{ marginBottom: 16 }}>
-        <label>Chọn đề thi</label>
+        <label>試験を選択</label>
         <Select
           value={examId}
           style={{ width: "100%" }}
-          placeholder="Chọn đề"
+          placeholder="試験を選択"
           onChange={setExamId}
         >
           {exams.map((e) => (
@@ -54,7 +54,7 @@ export default function AssignExamModal({
 
       {/* Thời gian */}
       <div>
-        <label>Thời gian (phút)</label>
+        <label>時間（分）</label>
         <InputNumber
           min={10}
           max={180}

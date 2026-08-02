@@ -12,18 +12,18 @@ const ViewStudent = ({
   // ✅ columns
   const columns = [
     {
-      title: 'STT',
+      title: 'No.',
       align: 'center',
       render: (_, __, index) => index + 1
     },
     {
-      title: 'Username',
+      title: 'ユーザー名',
       dataIndex: 'username',
       key: 'username',
       render: (text) => text || '---'
     },
     {
-      title: 'Họ và tên',
+      title: '氏名',
       key: 'fullName',
       render: (_, record) =>
         `${record.firstName || ''} ${record.lastName || ''}`.trim() || '---'
@@ -32,7 +32,7 @@ const ViewStudent = ({
 
   return (
     <Modal
-      title={`Sinh viên lớp ${classInfo?.name || 'Không xác định'}`}
+      title={`${classInfo?.name || '不明'} クラスの学生`}
       open={open}
       onCancel={onClose}
       footer={null}
@@ -40,8 +40,8 @@ const ViewStudent = ({
     >
       {/* Tổng số */}
       <p>
-        <strong>Tổng số: </strong>
-        {students.length} sinh viên
+        <strong>合計： </strong>
+        {students.length} 名
       </p>
 
       {/* Table + Loading */}
@@ -51,7 +51,7 @@ const ViewStudent = ({
           columns={columns}
           rowKey="id"
           pagination={{ pageSize: 5 }}
-          locale={{ emptyText: 'Chưa có sinh viên' }}
+          locale={{ emptyText: '学生がいません' }}
         />
       </Spin>
     </Modal>

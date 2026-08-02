@@ -22,7 +22,7 @@ export default function CreateQuestionModal({
 
     // kiểm tra ít nhất 1 đáp án đúng
     if (!answers.some((a) => a.isCorrect)) {
-      message.error("Please select at least one correct answer");
+      message.error("正解を少なくとも1つ選択してください");
       return;
     }
 
@@ -44,20 +44,20 @@ export default function CreateQuestionModal({
 
   return (
     <Modal
-      title="Tạo câu hỏi"
+      title="問題を作成"
       open={open}
       onCancel={handleCancel}
       onOk={handleOk}
-      okText="Create"
+      okText="作成"
       destroyOnHidden
       width={600}
     >
       <Form form={form} layout="vertical" onFinish={handleFinish}>
         {/* Nội dung câu hỏi */}
         <Form.Item
-          label="Câu hỏi"
+          label="問題"
           name="content"
-          rules={[{ required: true, message: "Please enter question content" }]}
+          rules={[{ required: true, message: "問題の内容を入力してください" }]}
         >
           <Input.TextArea rows={3} />
         </Form.Item>
@@ -66,9 +66,9 @@ export default function CreateQuestionModal({
         <Row gutter={12}>
           <Col span={12}>
             <Form.Item
-              label="Chế độ"
+              label="難易度"
               name="difficulty"
-              rules={[{ required: true, message: "Please select difficulty" }]}
+              rules={[{ required: true, message: "難易度を選択してください" }]}
             >
               <Select>
                 {DIFFICULTIES.map((d) => (
@@ -82,9 +82,9 @@ export default function CreateQuestionModal({
 
           <Col span={12}>
             <Form.Item
-              label="Danh mục"
+              label="カテゴリ"
               name="categoryId"
-              rules={[{ required: true, message: "Please select category" }]}
+              rules={[{ required: true, message: "カテゴリを選択してください" }]}
             >
               <Select>
                 {categories.map((c) => (
@@ -98,7 +98,7 @@ export default function CreateQuestionModal({
         </Row>
 
         {/* 4 đáp án */}
-        <Form.Item label="Đáp án">
+        <Form.Item label="解答">
           <Space orientation="vertical" style={{ width: "100%" }}>
             {ANSWER_LABELS.map((label) => (
               <Row key={label} gutter={8} align="middle">
@@ -127,12 +127,12 @@ export default function CreateQuestionModal({
                     rules={[
                       {
                         required: true,
-                        message: `Please enter answer ${label}`,
+                        message: `解答${label}を入力してください`,
                       },
                     ]}
                     style={{ marginBottom: 0 }}
                   >
-                    <Input placeholder={`Đáp án ${label}`} />
+                    <Input placeholder={`解答 ${label}`} />
                   </Form.Item>
                 </Col>
               </Row>
@@ -140,7 +140,7 @@ export default function CreateQuestionModal({
           </Space>
         </Form.Item>
         {/* Nội dung chu thich */}
-        <Form.Item label="Giải thích" name="explanation">
+        <Form.Item label="解説" name="explanation">
           <Input.TextArea rows={2} />
         </Form.Item>
       </Form>

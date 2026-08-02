@@ -144,7 +144,7 @@ export default function EditClassExamModal({
                 color={pendingItem.action === "ADD" ? "blue" : "red"}
                 style={{ position: "absolute", top: 6, right: 6 }}
               >
-                {pendingItem.action === "ADD" ? "Thêm" : "Xóa"}
+                {pendingItem.action === "ADD" ? "追加" : "削除"}
               </Tag>
             )}
           </div>
@@ -163,27 +163,27 @@ export default function EditClassExamModal({
 
   return (
     <Modal
-      title={`Cập nhật đề thi cho lớp: ${data?.name || ""}`}
+      title={`クラスへの試験を更新: ${data?.name || ""}`}
       open={open}
       onCancel={onCancel}
       width={800}
       footer={[
         <Button key="cancel" onClick={onCancel}>
-          Hủy
+          キャンセル
         </Button>,
         <Button key="save" type="primary" onClick={handleSave}>
-          Lưu
+          保存
         </Button>,
       ]}
     >
       {/* Assigned */}
-      <h3>Đề thi đã gán</h3>
+      <h3>割り当て済みの試験</h3>
       <div style={grid2Rows}>{assignedExams.map(renderItem)}</div>
 
       <Divider />
 
       {/* Pending */}
-      <h3>Đang chờ thay đổi</h3>
+      <h3>変更待ち</h3>
       <div style={grid1Row}>
         {pending.map((item) => (
           <div
@@ -206,7 +206,7 @@ export default function EditClassExamModal({
             </Button>
 
             <Tag color={item.action === "ADD" ? "blue" : "red"}>
-              {item.action === "ADD" ? "Xác nhận thêm" : "Xác nhận xóa"}
+              {item.action === "ADD" ? "追加を確定" : "削除を確定"}
             </Tag>
 
             <div style={{ marginTop: 6, fontWeight: 500 }}>{item.title}</div>
@@ -218,7 +218,7 @@ export default function EditClassExamModal({
       <Divider />
 
       {/* Available */}
-      <h3>Đề thi có sẵn</h3>
+      <h3>利用可能な試験</h3>
       <div style={grid2Rows}>{availableExams.map(renderItem)}</div>
     </Modal>
   );

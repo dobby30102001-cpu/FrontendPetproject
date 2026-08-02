@@ -27,7 +27,7 @@ const ClassesHeader = ({ title, description, buttonText, handleAdd }) => {
           icon={<FontAwesomeIcon icon={faPlus} />}
           onClick={handleAdd}
         >
-          {buttonText || "Thêm"}
+          {buttonText || "追加"}
         </Button>
       )}
     </div>

@@ -4,19 +4,19 @@ import TableActions from "../common/TableActions";
 export default function ExamClassTable({ data, onView, onEdit, loading }) {
   const columns = [
     {
-      title: "Lớp",
+      title: "クラス",
       dataIndex: "name",
     },
     {
-      title: "Số học sinh",
+      title: "学生数",
       dataIndex: "studentCount",
     },
     {
-      title: "Số đề thi",
+      title: "試験数",
       render: (_, record) => record.exams?.length || 0,
     },
     {
-      title: "Hành động",
+      title: "操作",
       align: "center",
       render: (_, record) => (
         <TableActions

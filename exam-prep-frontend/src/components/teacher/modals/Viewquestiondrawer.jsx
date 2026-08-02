@@ -17,7 +17,7 @@ const diffColor = {
 export default function ViewQuestionDrawer({ question, onClose }) {
   return (
     <Drawer
-      title="Chi tiết câu hỏi"
+      title="問題詳細"
       open={!!question}
       onClose={onClose}
        size="large"
@@ -48,11 +48,11 @@ export default function ViewQuestionDrawer({ question, onClose }) {
 
             <Space direction="vertical" size={2}>
               <Text type="secondary">
-                <UserOutlined /> Created by: {question?.creator}
+                <UserOutlined /> 作成者: {question?.creator}
               </Text>
 
               <Text type="secondary">
-                <CalendarOutlined /> Created date: {question?.createdDate}
+                <CalendarOutlined /> 作成日: {question?.createdDate}
               </Text>
             </Space>
           </Card>
@@ -60,7 +60,7 @@ export default function ViewQuestionDrawer({ question, onClose }) {
           {/* Answers */}
           {question.answers && question.answers.length > 0 && (
             <>
-              <Divider orientation="left">Đáp án</Divider>
+              <Divider orientation="left">解答</Divider>
 
               <List
                 rowKey={(item, index) => index}
@@ -84,7 +84,7 @@ export default function ViewQuestionDrawer({ question, onClose }) {
 
                       {ans.isCorrect && (
                         <Tag icon={<CheckCircleOutlined />} color="success">
-                          Correct
+                          正解
                         </Tag>
                       )}
                     </Space>
@@ -96,7 +96,7 @@ export default function ViewQuestionDrawer({ question, onClose }) {
           {/* Explanation */}
           {question?.explanation && (
             <>
-              <Divider orientation="left">Giải thích</Divider>
+              <Divider orientation="left">解説</Divider>
 
               <Card
                 style={{

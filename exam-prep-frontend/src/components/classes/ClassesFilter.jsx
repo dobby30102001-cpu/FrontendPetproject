@@ -18,7 +18,7 @@ const ClassesFilter = ({
         <Input
           className="search-input"
           prefix={<FontAwesomeIcon icon={faSearch} />}
-          placeholder="Tìm kiếm theo tên lớp"
+          placeholder="クラス名で検索"
           value={searchTerm}
           onChange={(e) => setSearchTerm(e.target.value)}
           allowClear
@@ -27,7 +27,7 @@ const ClassesFilter = ({
       <Col>
         <Space>
           <Button onClick={handleClear}>
-            <FontAwesomeIcon icon={faArrowRotateLeft} /> Xóa bộ lọc
+            <FontAwesomeIcon icon={faArrowRotateLeft} /> フィルターをクリア
           </Button>
         </Space>
       </Col>

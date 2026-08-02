@@ -57,7 +57,7 @@ export default function TeacherQuestion() {
       setTotal(res.data.data.totalElements);
       // eslint-disable-next-line no-unused-vars
     } catch (err) {
-      message.error("Load question failed");
+      message.error("問題の読み込みに失敗しました");
     }
   };
 
@@ -68,7 +68,7 @@ export default function TeacherQuestion() {
       setCategories(res.data.data.content);
       // eslint-disable-next-line no-unused-vars
     } catch (err) {
-      message.error("Load category failed");
+      message.error("カテゴリの読み込みに失敗しました");
     }
   };
 
@@ -81,7 +81,7 @@ export default function TeacherQuestion() {
         loading: false,
       });
     } catch (err) {
-      message.error("Load stats failed");
+      message.error("統計の読み込みに失敗しました");
       setStats((prev) => ({
         ...prev,
         loading: false,
@@ -96,7 +96,7 @@ export default function TeacherQuestion() {
       setViewingQuestion(res.data.data);
       // eslint-disable-next-line no-unused-vars
     } catch (err) {
-      message.error("Load question detail failed");
+      message.error("問題詳細の読み込みに失敗しました");
     }
   };
 
@@ -106,14 +106,14 @@ export default function TeacherQuestion() {
     try {
       await questionService.createQuestion(values);
 
-      message.success("Question created");
+      message.success("問題を作成しました");
 
       fetchQuestions();
       fetchStats();
       setCreateOpen(false);
       // eslint-disable-next-line no-unused-vars
     } catch (err) {
-      message.error("Create failed");
+      message.error("作成に失敗しました");
     }
   };
 
@@ -121,7 +121,7 @@ export default function TeacherQuestion() {
     try {
       await questionService.updateQuestion(editingQuestion.id, values);
 
-      message.success("Question updated");
+      message.success("問題を更新しました");
 
       fetchQuestions();
       fetchStats();
@@ -129,19 +129,19 @@ export default function TeacherQuestion() {
       setEditingQuestion(null);
       // eslint-disable-next-line no-unused-vars
     } catch (err) {
-      message.error("Update failed");
+      message.error("更新に失敗しました");
     }
   };
   const handleDelete = async (id) => {
     try {
       await questionService.deleteQuestion(id);
 
-      message.success("Question deleted");
+      message.success("問題を削除しました");
 
       fetchQuestions();
       fetchStats();
     } catch (err) {
-      message.error("Delete failed");
+      message.error("削除に失敗しました");
     }
   };
 
@@ -170,10 +170,10 @@ export default function TeacherQuestion() {
 
       window.URL.revokeObjectURL(url);
 
-      message.success("Export success");
+      message.success("エクスポートしました");
     } catch (err) {
       console.error(err);
-      message.error("Export failed");
+      message.error("エクスポートに失敗しました");
     }
   };
 
@@ -181,12 +181,12 @@ export default function TeacherQuestion() {
     try {
       await questionService.importQuestion(file);
 
-      message.success("Import success");
+      message.success("インポートしました");
 
       fetchQuestions();
       fetchStats();
     } catch (err) {
-      message.error("Import failed");
+      message.error("インポートに失敗しました");
     }
   };
 
@@ -215,14 +215,14 @@ export default function TeacherQuestion() {
     <div className="teacher-question-page">
       {/* HEADER */}
       <UserHeader
-        title="Quản lý câu hỏi"
-        description="Tạo, chỉnh sửa, xóa và quản lý câu hỏi"
-        buttonText="Thêm câu hỏi"
+        title="問題管理"
+        description="問題を作成、編集、削除、管理"
+        buttonText="問題を追加"
         handleAdd={() => setCreateOpen(true)}
         extra={
           <>
             <Button icon={<UploadOutlined />} onClick={handleExport}>
-              Export
+              エクスポート
             </Button>
 
             <Upload
@@ -232,7 +232,7 @@ export default function TeacherQuestion() {
                 return false;
               }}
             >
-              <Button icon={<DownloadOutlined />}>Import</Button>
+              <Button icon={<DownloadOutlined />}>インポート</Button>
             </Upload>
           </>
         }
@@ -242,10 +242,10 @@ export default function TeacherQuestion() {
       <StatsCards
         loading={stats.loading}
         items={[
-          { title: "Tổng số câu hỏi", value: stats.countTotal },
-          { title: "Số câu dễ", value: stats.countEasy },
-          { title: "Số câu trung bình", value: stats.countMedium },
-          { title: "Số câu khó", value: stats.countHard },
+          { title: "問題の総数", value: stats.countTotal },
+          { title: "易しい問題数", value: stats.countEasy },
+          { title: "普通の問題数", value: stats.countMedium },
+          { title: "難しい問題数", value: stats.countHard },
         ]}
       />
 
@@ -254,7 +254,7 @@ export default function TeacherQuestion() {
         <div style={{ flex: 1, minWidth: 220 }}>
           <Input
             prefix={<SearchOutlined style={{ color: "#bfbfbf" }} />}
-            placeholder="Tìm kiếm câu hỏi..."
+            placeholder="問題を検索..."
             allowClear
             onChange={(e) => setSearchInput(e.target.value)}
           />
@@ -265,7 +265,7 @@ export default function TeacherQuestion() {
 
         {/* Difficulty */}
         <Select
-          placeholder="Mức độ"
+          placeholder="難易度"
           allowClear
           style={{ width: 150 }}
           onChange={(v) => setDiffFilter(v)}
@@ -277,7 +277,7 @@ export default function TeacherQuestion() {
           ))}
         </Select>
         <Select
-          placeholder="Chủ đề"
+          placeholder="カテゴリ"
           allowClear
           style={{ width: 150 }}
           onChange={(v) => setCatFilter(v)}
@@ -290,7 +290,7 @@ export default function TeacherQuestion() {
         </Select>
 
         <Select
-          placeholder="Sắp xếp"
+          placeholder="並び替え"
           style={{ width: 160 }}
           allowClear
           onChange={(value) => {
@@ -299,8 +299,8 @@ export default function TeacherQuestion() {
           }}
         >
           {" "}
-          <Select.Option value="desc">Mới → Cũ</Select.Option>
-          <Select.Option value="asc">Cũ → Mới</Select.Option>
+          <Select.Option value="desc">新しい順</Select.Option>
+          <Select.Option value="asc">古い順</Select.Option>
         </Select>
       </div>
 

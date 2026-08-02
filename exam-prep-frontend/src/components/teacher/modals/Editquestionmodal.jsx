@@ -56,7 +56,7 @@ export default function EditQuestionModal({
     }));
 
     if (!answers.some((a) => a.isCorrect)) {
-      message.error("Please select at least one correct answer");
+      message.error("正解を少なくとも1つ選択してください");
       return;
     }
 
@@ -78,23 +78,23 @@ export default function EditQuestionModal({
 
   return (
     <Modal
-      title="Chỉnh sửa câu hỏi"
+      title="問題を編集"
       open={open}
       onCancel={handleCancel}
       onOk={handleOk}
-      okText="Save"
+      okText="保存"
       destroyOnHidden
       width={600}
     >
       <Form form={form} layout="vertical" onFinish={handleFinish}>
-        <Form.Item label="Câu hỏi" name="content" rules={[{ required: true }]}>
+        <Form.Item label="問題" name="content" rules={[{ required: true }]}>
           <Input.TextArea rows={3} />
         </Form.Item>
 
         <Row gutter={12}>
           <Col span={12}>
             <Form.Item
-              label="Mức độ"
+              label="難易度"
               name="difficulty"
               rules={[{ required: true }]}
             >
@@ -110,7 +110,7 @@ export default function EditQuestionModal({
 
           <Col span={12}>
             <Form.Item
-              label="Danh mục"
+              label="カテゴリ"
               name="categoryId"
               rules={[{ required: true }]}
             >
@@ -125,7 +125,7 @@ export default function EditQuestionModal({
           </Col>
         </Row>
 
-        <Form.Item label="Đáp án">
+        <Form.Item label="解答">
           <Space direction="vertical" style={{ width: "100%" }}>
             {ANSWER_LABELS.map((label) => (
               <Row key={label} gutter={8} align="middle">
@@ -149,14 +149,14 @@ export default function EditQuestionModal({
                     rules={[{ required: true }]}
                     style={{ marginBottom: 0 }}
                   >
-                    <Input placeholder={`Answer ${label}`} />
+                    <Input placeholder={`解答 ${label}`} />
                   </Form.Item>
                 </Col>
               </Row>
             ))}
           </Space>
         </Form.Item>
-        <Form.Item label="Chú thích" name="explanation">
+        <Form.Item label="解説" name="explanation">
           <Input.TextArea rows={2} />
         </Form.Item>
       </Form>

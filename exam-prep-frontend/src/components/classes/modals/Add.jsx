@@ -3,7 +3,7 @@ import { Modal, Form, Input, Button, Space } from 'antd'
 const Add = ({ open, isEditMode, form, loading, onCancel, onSubmit }) => {
   return (
     <Modal
-      title={isEditMode ? 'Chỉnh sửa lớp' : 'Tạo lớp mới'}
+      title={isEditMode ? 'クラスを編集' : 'クラスを新規作成'}
       open={open}
       confirmLoading={loading}
       onCancel={onCancel}
@@ -17,16 +17,16 @@ const Add = ({ open, isEditMode, form, loading, onCancel, onSubmit }) => {
       >
         <Form.Item
           name="name"
-          label="Tên lớp"
-          rules={[{ required: true, message: 'Vui lòng nhập tên lớp!' }]}
+          label="クラス名"
+          rules={[{ required: true, message: 'クラス名を入力してください！' }]}
         >
-          <Input placeholder="VD: Lớp Java cơ bản 01" />
+          <Input placeholder="例：Java 基礎クラス 01" />
         </Form.Item>
 
         <Form.Item style={{ marginBottom: 0 }}>
           <Space style={{ width: '100%', justifyContent: 'flex-end' }}>
             <Button onClick={onCancel}>
-              Hủy
+              キャンセル
             </Button>
 
             <Button
@@ -34,7 +34,7 @@ const Add = ({ open, isEditMode, form, loading, onCancel, onSubmit }) => {
               htmlType="submit"
               loading={loading}
             >
-              {isEditMode ? 'Cập nhật' : 'Tạo lớp'}
+              {isEditMode ? '更新' : 'クラスを作成'}
             </Button>
           </Space>
         </Form.Item>

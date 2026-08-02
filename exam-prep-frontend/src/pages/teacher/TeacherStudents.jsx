@@ -96,8 +96,8 @@ export default function TeacherStudent() {
     <div className="teacher-question-page">
       {/* Header */}
       <UserHeader
-        title="Quản lý học viên"
-        description="Theo dõi học sinh và kết quả học tập"
+        title="学生管理"
+        description="学生と学習結果を追跡"
       />
 
       {/* Filters */}
@@ -106,7 +106,7 @@ export default function TeacherStudent() {
         <Input
           value={searchExam}
           onChange={(e) => setSearchExam(e.target.value)}
-          placeholder="Tìm theo tên đề thi"
+          placeholder="試験名で検索"
           variant="borderless"
           style={{
             width: 500,
@@ -122,7 +122,7 @@ export default function TeacherStudent() {
         <Input
           value={searchStudent}
           onChange={(e) => setSearchStudent(e.target.value)}
-          placeholder="Tìm theo tên học sinh"
+          placeholder="学生名で検索"
           variant="borderless"
           style={{
             width: 500,
@@ -138,7 +138,7 @@ export default function TeacherStudent() {
         <Select
           value={classFilter || undefined}
           onChange={(value) => setClassFilter(value || "")}
-          placeholder="Lớp"
+          placeholder="クラス"
           allowClear
           variant="borderless"
           style={{

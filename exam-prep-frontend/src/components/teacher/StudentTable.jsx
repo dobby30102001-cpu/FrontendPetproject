@@ -3,28 +3,28 @@ import BaseTable from "../common/BaseTable";
 const StudentTable = ({ data, loading, onView }) => {
   const columns = [
     {
-      title: "Mã đề thi",
+      title: "試験コード",
       dataIndex: "code",
     },
     {
-      title: "Đề thi",
+      title: "試験",
       dataIndex: "exam",
     },
     {
-      title: "Học sinh",
+      title: "学生",
       dataIndex: "student",
     },
 
     {
-      title: "Lớp",
+      title: "クラス",
       dataIndex: "class",
     },
     {
-      title: "Điểm thi",
+      title: "得点",
       dataIndex: "score",
     },
     {
-      title: "Hành động",
+      title: "操作",
       align: "center",
       render: (_, record) => (
         <TableActions

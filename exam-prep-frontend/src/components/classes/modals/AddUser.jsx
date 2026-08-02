@@ -22,20 +22,20 @@ const AddUser = ({
 
   const columns = [
     {
-      title: 'STT',
+      title: 'No.',
       align: 'center',
       render: (_, __, index) => index + 1
     },
     {
-      title: 'Username',
+      title: 'ユーザー名',
       dataIndex: 'username'
     },
     {
-      title: 'Tên đăng nhập',
+      title: '氏名',
       render: (_, record) =>
         `${record.firstName || ''} ${record.lastName || ''}`
     },
-   
+
   ]
 
   const rowSelection = {
@@ -57,13 +57,13 @@ const AddUser = ({
 
   return (
     <Modal
-      title="Thêm sinh viên vào lớp"
+      title="クラスに学生を追加"
       open={open}
       onCancel={onCancel}
       width={700}
       footer={[
         <Button key="cancel" onClick={onCancel}>
-          Hủy
+          キャンセル
         </Button>,
         <Button
           key="submit"
@@ -71,7 +71,7 @@ const AddUser = ({
           onClick={handleSubmit}
           loading={loading}
         >
-          Thêm
+          追加
         </Button>
       ]}
     >

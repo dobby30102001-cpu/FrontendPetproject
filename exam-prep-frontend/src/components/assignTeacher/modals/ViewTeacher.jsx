@@ -11,18 +11,18 @@ const ViewTeacher = ({
 
   const columns = [
     {
-      title: 'STT',
+      title: 'No.',
       align: 'center',
       render: (_, __, index) => index + 1
     },
     {
-      title: 'Username',
+      title: 'ユーザー名',
       dataIndex: 'username',
       key: 'username',
       render: (text) => text || '---'
     },
     {
-      title: 'Họ và tên',
+      title: '氏名',
       key: 'fullName',
       render: (_, record) =>
         `${record.firstName || ''} ${record.lastName || ''}`.trim() || '---'
@@ -31,7 +31,7 @@ const ViewTeacher = ({
 
   return (
     <Modal
-      title={`Giáo viên lớp ${classInfo?.name || 'Không xác định'}`}
+      title={`${classInfo?.name || '不明'} クラスの教員`}
       open={open}
       onCancel={onClose}
       footer={null}
@@ -39,7 +39,7 @@ const ViewTeacher = ({
     >
       {/* Tổng số */}
       <p>
-        <strong>Số giáo viên: </strong>
+        <strong>教員数： </strong>
         {teachers.length}
       </p>
 
@@ -50,7 +50,7 @@ const ViewTeacher = ({
           columns={columns}
           rowKey="id"
           pagination={{ pageSize: 5 }}
-          locale={{ emptyText: 'Chưa có giáo viên' }}
+          locale={{ emptyText: '教員がいません' }}
         />
       </Spin>
     </Modal>

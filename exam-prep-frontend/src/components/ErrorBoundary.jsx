@@ -20,8 +20,8 @@ class ErrorBoundary extends React.Component {
         if (this.state.hasError) {
             return (
                 <div style={{ padding: 24 }}>
-                    <h2>Đã xảy ra lỗi trong thành phần.</h2>
-                    <p>Vui lòng kiểm tra console để biết thông tin chi tiết.</p>
+                    <h2>コンポーネントでエラーが発生しました。</h2>
+                    <p>詳細はコンソールをご確認ください。</p>
                     <details style={{ whiteSpace: "pre-wrap" }}>
                         {this.state.error && this.state.error.toString()}
                         {this.state.info && this.state.info.componentStack}

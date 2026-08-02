@@ -20,16 +20,16 @@ const Add = ({
 
   const columns = [
     {
-      title: 'STT',
+      title: 'No.',
       align: 'center',
       render: (_, __, index) => index + 1
     },
     {
-      title: 'Username',
+      title: 'ユーザー名',
       dataIndex: 'username'
     },
     {
-      title: 'Tên giáo viên',
+      title: '教員名',
       render: (_, record) =>
         `${record.firstName || ''} ${record.lastName || ''}`
     },
@@ -53,13 +53,13 @@ const Add = ({
 
   return (
     <Modal
-      title="Phân công giáo viên"
+      title="教員を割り当て"
       open={open}
       onCancel={onCancel}
       width={700}
       footer={[
         <Button key="cancel" onClick={onCancel}>
-          Hủy
+          キャンセル
         </Button>,
         <Button
           key="submit"
@@ -67,7 +67,7 @@ const Add = ({
           onClick={handleSubmit}
           loading={loading}
         >
-          Lưu
+          保存
         </Button>
       ]}
     >

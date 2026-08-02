@@ -6,23 +6,23 @@ import { faClock, faBook, faHeart, faSearch } from "@fortawesome/free-solid-svg-
 const mockData = [
   {
     id: "BT001",
-    title: "Toán lớp 12 - Chương 1",
-    subject: "Toán",
-    duration: "60 phút",
+    title: "数学（高校3年）- 第1章",
+    subject: "数学",
+    duration: "60分",
     questions: 30,
   },
   {
     id: "BT002",
-    title: "Văn lớp 12 - Nghị luận xã hội",
-    subject: "Ngữ văn",
-    duration: "90 phút",
+    title: "国語（高校3年）- 論説文",
+    subject: "国語",
+    duration: "90分",
     questions: 40,
   },
   {
     id: "BT003",
-    title: "Lý lớp 11 - Dao động cơ",
-    subject: "Vật lý",
-    duration: "45 phút",
+    title: "物理（高校2年）- 力学振動",
+    subject: "物理",
+    duration: "45分",
     questions: 25,
   },
 ];
@@ -71,14 +71,14 @@ const DeThiYeuThich = () => {
 
   return (
     <div style={{ padding: "24px" }}>
-      <h1>Đề thi yêu thích</h1>
-      <p>Danh sách các đề thi bạn đã lưu.</p>
+      <h1>お気に入りの試験</h1>
+      <p>保存した試験の一覧です。</p>
 
    <div style={{ marginBottom: '24px' }}>
            <Input
              className="search-input"
              prefix={<FontAwesomeIcon icon={faSearch} />}
-             placeholder="Tìm kiếm bài thi theo tiêu đề, môn học..."
+             placeholder="タイトル、科目で試験を検索..."
              value={searchTerm}
              onChange={(e) => setSearchTerm(e.target.value)}
              style={{ maxWidth: 400 }}
@@ -94,7 +94,7 @@ const DeThiYeuThich = () => {
             textAlign: "center",
           }}
         >
-          <h3>Chưa có đề thi yêu thích ❤️{searchTerm && ' hoặc không khớp tìm kiếm'}</h3>
+          <h3>お気に入りの試験がまだありません ❤️{searchTerm && ' または検索条件に一致しません'}</h3>
         </div>
       ) : (
         <Row gutter={[24, 24]} style={{ marginTop: 24 }}>
@@ -125,7 +125,7 @@ const DeThiYeuThich = () => {
                 <h3>{exam.title}</h3>
 
                 <p style={{ color: "#888" }}>
-                  <FontAwesomeIcon icon={faBook} /> {exam.questions} câu hỏi
+                  <FontAwesomeIcon icon={faBook} /> {exam.questions} 問
                 </p>
 
                 <Tag color="blue">{exam.subject}</Tag>

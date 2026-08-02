@@ -129,7 +129,7 @@ const Thithu = () => {
   };
   // ❌ nếu reload mất data
   if (!examData) {
-    return <div style={{ padding: 24 }}>Không có dữ liệu bài thi</div>;
+    return <div style={{ padding: 24 }}>試験データがありません</div>;
   }
   const questions = examData.questions.map((q) => ({
     id: q.id,
@@ -166,7 +166,7 @@ const Thithu = () => {
     const diffMs = endTime - startTime;
     const minutes = Math.floor(diffMs / 60000);
     const seconds = Math.floor((diffMs % 60000) / 1000);
-    setSubmitDuration(`${minutes} phút ${seconds} giây`);
+    setSubmitDuration(`${minutes}分${seconds}秒`);
 
     try {
       const answerList = Object.entries(answers).map(
@@ -178,7 +178,7 @@ const Thithu = () => {
 
       const attemptId = resolveAttemptId(examData);
       if (attemptId == null) {
-        alert("Thiếu mã lượt thi. Vui lòng vào lại từ danh sách bài luyện tập.");
+        alert("受験IDがありません。練習一覧から入り直してください。");
         setSubmitted(false);
         return;
       }
@@ -206,13 +206,13 @@ const Thithu = () => {
     const unanswered = questions.filter((q) => !answers[q.id]).length;
 
     confirm({
-      title: "Xác nhận nộp bài",
+      title: "提出の確認",
       content:
         unanswered === 0
-          ? "Bạn đã làm hết. Bạn có chắc muốn nộp?"
-          : `Còn ${unanswered} câu chưa làm, vẫn nộp?`,
-      okText: "Nộp bài",
-      cancelText: "Hủy",
+          ? "すべての問題に回答しました。提出してもよろしいですか？"
+          : `未回答が ${unanswered} 問あります。それでも提出しますか？`,
+      okText: "提出",
+      cancelText: "キャンセル",
       onOk() {
         handleConfirmSubmit();
       },
@@ -251,7 +251,7 @@ const scrollToQuestion = (id) => {
   }
 };
   const formatDate = (date) => {
-    return new Date(date).toLocaleString("vi-VN");
+    return new Date(date).toLocaleString("ja-JP");
   };
 
   return (
@@ -259,11 +259,11 @@ const scrollToQuestion = (id) => {
       <Row justify="space-between" style={{ marginBottom: "24px" }}>
         <Col>
           <h2>{examData.examTitle}</h2>
-          <p style={{ color: "#666" }}>Đọc kỹ đề bài và chọn đáp án</p>
+          <p style={{ color: "#666" }}>問題をよく読んで解答を選択してください</p>
         </Col>
 
         <Col style={{ textAlign: "right" }}>
-          <p>Thời gian làm bài</p>
+          <p>試験時間</p>
           <h3 style={{ color: timeLeft <= 60 ? "red" : "black" }}>
             {formatTime(timeLeft)}
           </h3>
@@ -305,7 +305,7 @@ const scrollToQuestion = (id) => {
             return (
               <div key={q.id} ref={(el) => (questionRefs.current[q.id] = el)}>
                 <Card
-                  title={`Câu ${index + 1}`}
+                  title={`問${index + 1}`}
                   style={{
                     marginBottom: "16px",
                     borderRadius: "12px",
@@ -360,7 +360,7 @@ const scrollToQuestion = (id) => {
                         color: "#555",
                       }}
                     >
-                      <b>Giải thích:</b> {explanationText}
+                      <b>解説:</b> {explanationText}
                     </p>
                   ) : null}
                 </Card>
@@ -382,7 +382,7 @@ const scrollToQuestion = (id) => {
     overflowY: "auto",
   }}
 >
-            <p style={{ marginBottom: "10px" }}>Xem lại nhanh</p>
+            <p style={{ marginBottom: "10px" }}>クイックレビュー</p>
             <div
               style={{
                 display: "grid",
@@ -434,12 +434,12 @@ const scrollToQuestion = (id) => {
               disabled={submitted}
               style={{ marginBottom: "10px" }}
             >
-              Nộp bài
+              提出
             </Button>
 
             {submitted && (
               <Button block onClick={handleGoBack}>
-                Quay lại danh sách thi
+                試験一覧に戻る
               </Button>
             )}
           </div>
@@ -447,47 +447,47 @@ const scrollToQuestion = (id) => {
       </Row>
 
       <Modal
-        title="Kết quả bài thi"
+        title="試験結果"
         open={openModal}
         onCancel={() => setOpenModal(false)}
         footer={[
           <Button key="review" type="primary" onClick={() => setOpenModal(false)}>
-            Xem lại bài
+            解答を確認
           </Button>,
           // <Button key="finish" type="primary" onClick={handleGoBack}>
           //   Kết thúc
           // </Button>
         ]}
       >
-        <p><b>Ngày thi:</b> {formatDate(startTime)}</p>
+        <p><b>受験日:</b> {formatDate(startTime)}</p>
 
         <p>
-          <b>Thời gian:</b> {examData.duration}
+          <b>時間:</b> {examData.duration}
         </p>
 
-        <p><b>Loại thi:</b> {examData.examType}</p>
-        <p><b>Thời gian nộp:</b> {submitDuration}</p>
+        <p><b>試験種別:</b> {examData.examType}</p>
+        <p><b>所要時間:</b> {submitDuration}</p>
 
         <p>
-          <b>Trạng thái:</b>{" "}
+          <b>ステータス:</b>{" "}
           <span style={{ color: result?.resultStatus === "PASSED" ? "#52c41a" : "#ff4d4f" }}>
-            {result?.resultStatus === "PASSED" ? "ĐẠT" : "KHÔNG ĐẠT"}
+            {result?.resultStatus === "PASSED" ? "合格" : "不合格"}
           </span>
         </p>
         <hr />
-        <h3>Kết quả</h3>
+        <h3>結果</h3>
         <p>
-          <b>Điểm số:</b>{" "}
+          <b>得点:</b>{" "}
           {result ? (result.score).toFixed(1) : 0}
         </p>
         <p>
-          <b>Đúng:</b> {result?.correctCount}/{result?.totalQuestions}
+          <b>正解:</b> {result?.correctCount}/{result?.totalQuestions}
         </p>
         <p>
-          <b>Sai:</b> {result?.wrongCount}
+          <b>不正解:</b> {result?.wrongCount}
         </p>
         <p>
-          <b>Chưa làm:</b> {result?.blankCount}
+          <b>未回答:</b> {result?.blankCount}
         </p>
       </Modal>
     </div>

@@ -4,9 +4,9 @@ import { Modal, Tag, Space, Typography, Row, Col } from "antd";
 const { Text } = Typography;
 
 const DIFF_MAP = {
-  EASY: { color: "success", label: "Dễ" },
-  MEDIUM: { color: "warning", label: "Trung bình" },
-  HARD: { color: "error", label: "Khó" },
+  EASY: { color: "success", label: "易しい" },
+  MEDIUM: { color: "warning", label: "普通" },
+  HARD: { color: "error", label: "難しい" },
 };
 
 const CAT_COLORS = {
@@ -25,7 +25,7 @@ export default function ExamPreviewModal({ exam, onClose }) {
   return (
     <Modal
       title={
-        <Text strong style={{ fontSize: 16, color: "#fdfdfd" }}>Tiều đề: {exam.title}</Text>
+        <Text strong style={{ fontSize: 16, color: "#fdfdfd" }}>タイトル: {exam.title}</Text>
       }
       open={!!exam}
       onCancel={onClose}
@@ -44,11 +44,11 @@ export default function ExamPreviewModal({ exam, onClose }) {
       >
         <Row gutter={[16, 8]}>
           <Col span={12}>
-            <Text>Mã đề: <b>{exam.code}</b></Text>
+            <Text>試験コード: <b>{exam.code}</b></Text>
           </Col>
           <Col span={12}>
             <Text>
-              Danh mục:{" "}
+              カテゴリ:{" "}
               <Tag color={CAT_COLORS[exam.category]}>
                 {exam.category}
               </Tag>
@@ -57,41 +57,41 @@ export default function ExamPreviewModal({ exam, onClose }) {
 
           <Col span={12}>
             <Text>
-              Loại đề:{" "}
+              試験種別:{" "}
               <Tag color={exam.examType === "OFFICIAL" ? "red" : "green"}>
                 {exam.examType === "OFFICIAL"
-                  ? "Thi thật"
-                  : "Luyện tập"}
+                  ? "本試験"
+                  : "練習"}
               </Tag>
             </Text>
           </Col>
 
           <Col span={12}>
-            <Text>Điểm pass: <b>{exam.passScore}</b></Text>
+            <Text>合格点: <b>{exam.passScore}</b></Text>
           </Col>
 
           <Col span={12}>
             <Text>
-              Cho phép xem lại:{" "}
+              復習可否:{" "}
               <Tag color={exam.reviewAllowed ? "green" : "default"}>
-                {exam.reviewAllowed ? "Được phép" : "Không"}
+                {exam.reviewAllowed ? "可" : "不可"}
               </Tag>
             </Text>
           </Col>
 
           <Col span={12}>
-            <Text>Thời gian: {exam.duration}</Text>
+            <Text>時間: {exam.duration}</Text>
           </Col>
 
           <Col span={12}>
-            <Text>Số câu hỏi: {questions.length}</Text>
+            <Text>問題数: {questions.length}</Text>
           </Col>
         </Row>
       </div>
 
       {/* ─── Danh sách câu hỏi ─── */}
       {questions.length === 0 ? (
-        <Text type="secondary">Chưa có câu hỏi nào</Text>
+        <Text type="secondary">問題がありません</Text>
       ) : (
         questions.map((q, idx) => {
           const d = DIFF_MAP[q.difficulty];
@@ -187,7 +187,7 @@ export default function ExamPreviewModal({ exam, onClose }) {
                         type="success"
                         style={{ marginLeft: "auto", fontSize: 11 }}
                       >
-                        ✓ Đúng
+                        ✓ 正解
                       </Text>
                     )}
                   </div>
@@ -205,7 +205,7 @@ export default function ExamPreviewModal({ exam, onClose }) {
                       border: "1px dashed #e8e8e8",
                     }}
                   >
-                    Explanation: {q.explanation}
+                    解説: {q.explanation}
                   </Text>
                 )}
               </div>

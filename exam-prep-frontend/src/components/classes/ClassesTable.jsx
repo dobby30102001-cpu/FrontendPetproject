@@ -5,28 +5,28 @@ import { faPencil, faTrash, faUserPlus, faUserGraduate } from '@fortawesome/free
 const ClassesTable = ({ data, loading, onadd, onEdit, onDelete, onView, page, total, onPageChange }) => {
   const columns = [
     {
-      title: 'STT',
+      title: 'No.',
       align: 'center',
-      render: (_, __, index) => (page * 5) + index + 1 
+      render: (_, __, index) => (page * 5) + index + 1
     },
     {
-      title: 'Tên lớp',
+      title: 'クラス名',
       dataIndex: 'name'
     },
     {
-      title: 'Số sinh viên',
+      title: '学生数',
       dataIndex: 'studentCount',
       align: 'center',
       render: (count) => count ?? 0
     },
     {
-      title: 'Ngày tạo',
+      title: '作成日',
       dataIndex: 'createDate',
       render: (date) =>
-        date ? new Date(date).toLocaleDateString('vi-VN') : 'N/A'
+        date ? new Date(date).toLocaleDateString('ja-JP') : 'N/A'
     },
     {
-      title: 'Hành động',
+      title: '操作',
       align: 'center',
       render: (_, record) => (
         <Space>
@@ -47,7 +47,7 @@ const ClassesTable = ({ data, loading, onadd, onEdit, onDelete, onView, page, to
 
           {/* Nút xóa */}
           <Popconfirm
-            title="Xóa lớp?"
+            title="クラスを削除しますか？"
             onConfirm={() => onDelete(record.id)}
           >
             <Button

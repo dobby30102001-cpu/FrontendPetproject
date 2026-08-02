@@ -37,24 +37,24 @@ const LichSuluyentap = () => {
 
   return {
     id: item.id,
-    title: item.exam?.title || "Không có tiêu đề",
+    title: item.exam?.title || "タイトルなし",
     date: item.startTime
-      ? new Date(item.startTime).toLocaleDateString("vi-VN")
+      ? new Date(item.startTime).toLocaleDateString("ja-JP")
       : "N/A",
 
     // ✅ thêm dòng này
     endTime: item.endTime
-      ? new Date(item.endTime).toLocaleTimeString("vi-VN")
-      : "Chưa hoàn thành",
+      ? new Date(item.endTime).toLocaleTimeString("ja-JP")
+      : "未完了",
 
     duration: item.exam?.duration || "0",
-    type: item.exam?.examType === "OFFICIAL" ? "Thi thật" : "Luyện tập",
+    type: item.exam?.examType === "OFFICIAL" ? "本試験" : "練習",
     score: item.score ?? 0,
     correct: item.correctCount ?? 0,
     wrong: item.wrongCount ?? 0,
     total,
     timeDone: `${item.timeSpentSeconds ?? 0}s`,
-    status: isPass ? "ĐẠT" : "KHÔNG ĐẠT",
+    status: isPass ? "合格" : "不合格",
     isPass,
     rawData: item,
   };
@@ -78,9 +78,9 @@ const LichSuluyentap = () => {
 
   return (
     <div style={{ padding: "24px" }}>
-      <h1>Lịch sử thi luyện tập</h1>
+      <h1>練習履歴</h1>
       <p style={{ marginBottom: "32px", color: "#666" }}>
-        Xem lại lịch sử thi luyện tập của bạn
+        練習の履歴を確認できます
       </p>
 
       {/* SEARCH */}
@@ -88,7 +88,7 @@ const LichSuluyentap = () => {
             <Input
               className="search-input"
               prefix={<FontAwesomeIcon icon={faSearch} />}
-              placeholder="Tìm kiếm bài thi theo tiêu đề, môn học..."
+              placeholder="タイトル、科目で試験を検索..."
               value={searchTerm}
               onChange={(e) => setSearchTerm(e.target.value)}
               style={{ maxWidth: 400 }}
@@ -150,16 +150,16 @@ const LichSuluyentap = () => {
                   percent={exam.score} // ✅ FIX
                   size="small"
                 />
-                <b>Điểm: {exam.score}/100</b>
+                <b>得点: {exam.score}/100</b>
               </div>
 
               {/* STATS */}
               <div style={{ marginTop: 10, fontSize: 13 }}>
                 <div>
-                  <Badge status="success" /> Đúng: {exam.correct}/{exam.total}
+                  <Badge status="success" /> 正解: {exam.correct}/{exam.total}
                 </div>
                 <div style={{ color: "red" }}>
-                  <Badge status="error" /> Sai: {exam.wrong}
+                  <Badge status="error" /> 不正解: {exam.wrong}
                 </div>
                 <div>
                   <Badge status="processing" /> {exam.timeDone}
@@ -205,7 +205,7 @@ const LichSuluyentap = () => {
               cursor: "pointer",
             }}
           >
-            Tải thêm kết quả
+            さらに読み込む
           </button>
         </div>
       )}

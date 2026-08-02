@@ -3,22 +3,22 @@ import { Modal, Table } from 'antd'
 const View = ({ open, onCancel, students = [] }) => {
   const columns = [
     {
-      title: 'STT',
+      title: 'No.',
       align: 'center',
       render: (_, __, index) => index + 1
     },
     {
-      title: 'Username',
+      title: 'ユーザー名',
       dataIndex: 'username'
     },
     {
-      title: 'Họ và tên',
+      title: '氏名',
       dataIndex: 'fullName'
     }
   ]
   return (
     <Modal
-      title="Danh sách sinh viên"
+      title="学生一覧"
       open={open}
       onCancel={onCancel}
       footer={null}
