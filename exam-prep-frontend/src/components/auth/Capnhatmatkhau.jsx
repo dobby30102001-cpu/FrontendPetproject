@@ -15,12 +15,12 @@ const Capnhatmatkhau = ({
     try {
       setLoading(true)
       await onChangePassword(values);
-      toast.success("Đổi mật khẩu thành công!");
+      toast.success("パスワードを変更しました");
       form.resetFields();
       onCancel();
     } catch (error) {
       toast.error(
-        error?.message || "Đổi mật khẩu thất bại. Vui lòng thử lại."
+        error?.message || "パスワードの変更に失敗しました。もう一度お試しください"
       );
     } finally {
       setLoading(false);
@@ -33,7 +33,7 @@ const Capnhatmatkhau = ({
   };
   return (
     <Modal
-      title="Đổi mật khẩu"
+      title="パスワード変更"
       open={open}
       footer={null}
       onCancel={handleCancel}
@@ -48,53 +48,53 @@ const Capnhatmatkhau = ({
       >
 
         <Form.Item
-          label="Mật khẩu hiện tại"
+          label="現在のパスワード"
           name="currentPassword"
           rules={[
             {
               required: true,
-              message: "Vui lòng nhập mật khẩu hiện tại",
+              message: "現在のパスワードを入力してください",
             },
           ]}
         >
           <Input.Password
             prefix={<FontAwesomeIcon icon={faLock} />}
-            placeholder="Nhập mật khẩu hiện tại"
+            placeholder="現在のパスワードを入力"
             size="large"
           />
         </Form.Item>
 
 
         <Form.Item
-          label="Mật khẩu mới"
+          label="新しいパスワード"
           name="newPassword"
           rules={[
             {
               required: true,
-              message: "Vui lòng nhập mật khẩu mới",
+              message: "新しいパスワードを入力してください",
             },
             {
               min: 6,
-              message: "Mật khẩu phải có ít nhất 6 ký tự",
+              message: "パスワードは 6 文字以上で入力してください",
             },
           ]}
         >
           <Input.Password
             prefix={<FontAwesomeIcon icon={faLock} />}
-            placeholder="Nhập mật khẩu mới"
+            placeholder="新しいパスワードを入力"
             size="large"
           />
         </Form.Item>
 
 
         <Form.Item
-          label="Xác nhận mật khẩu mới"
+          label="新しいパスワード（確認）"
           name="confirmPassword"
           dependencies={["newPassword"]}
           rules={[
             {
               required: true,
-              message: "Vui lòng nhập lại mật khẩu mới",
+              message: "パスワードを再入力してください",
             },
             ({ getFieldValue }) => ({
               validator(_, value) {
@@ -104,7 +104,7 @@ const Capnhatmatkhau = ({
                 }
 
                 return Promise.reject(
-                  new Error("Mật khẩu xác nhận không khớp")
+                  new Error("パスワードが一致しません")
                 );
               },
             }),
@@ -113,7 +113,7 @@ const Capnhatmatkhau = ({
 
           <Input.Password
             prefix={<FontAwesomeIcon icon={faLock} />}
-            placeholder="Nhập lại mật khẩu mới"
+            placeholder="新しいパスワードを再入力"
             size="large"
           />
 
@@ -134,7 +134,7 @@ const Capnhatmatkhau = ({
               onClick={handleCancel}
               size="large"
             >
-              Hủy
+              キャンセル
             </Button>
 
 
@@ -144,7 +144,7 @@ const Capnhatmatkhau = ({
               size="large"
               loading={loading}
             >
-              Lưu
+              保存
             </Button>
 
           </div>

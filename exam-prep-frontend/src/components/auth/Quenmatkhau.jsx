@@ -23,12 +23,12 @@ const Quenmatkhau = ({ open, onClose }) => {
 
       navigate("/reset-password");
     } catch (error) {
-      toast.error(error.response?.data?.message || "Không thể gửi OTP");
+      toast.error(error.response?.data?.message || "OTP の送信に失敗しました");
     }
   };
   return (
     <Modal
-      title="Quên mật khẩu"
+      title="パスワードをお忘れの方"
       open={open}
       footer={null}
       onCancel={onClose}
@@ -36,22 +36,22 @@ const Quenmatkhau = ({ open, onClose }) => {
     >
       <Form layout="vertical" onFinish={handleForgotPassword}>
         <Form.Item
-          label="Email"
+          label="メールアドレス"
           name="email"
           rules={[
-            { required: true, message: "Vui lòng nhập email" },
-            { type: "email", message: "Email không hợp lệ" },
+            { required: true, message: "メールアドレスを入力してください" },
+            { type: "email", message: "メールアドレスの形式が正しくありません" },
           ]}
         >
           <Input
             prefix={<FontAwesomeIcon icon={faEnvelope} />}
-            placeholder="Nhập email của bạn"
+            placeholder="メールアドレスを入力"
             size="large"
           />
         </Form.Item>
 
         <Button type="primary" htmlType="submit" block size="large">
-          Gửi OTP
+          OTP を送信
         </Button>
       </Form>
     </Modal>

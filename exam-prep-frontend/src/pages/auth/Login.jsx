@@ -17,14 +17,12 @@ const Login = () => {
     setLoading(true);
     try {
       const userData = await login(values);
-      // Hiển thị cảnh báo nếu có lần đăng nhập sai
       if (userData.failCount > 0) {
-        toast.warning(`Bạn đã nhập sai ${userData.failCount} lần`);
+        toast.warning(`ログインに ${userData.failCount} 回失敗しています`);
       }
 
-      toast.success("Đăng nhập thành công!");
+      toast.success("ログインしました");
 
-      // Điều hướng theo role (AuthContext đã lưu token/role)
       const role = userData.role;
       if (role === "ADMIN") {
         navigate("/admin");
@@ -34,11 +32,10 @@ const Login = () => {
         navigate("/student");
       }
     } catch (error) {
-      // Xử lý lỗi API
       if (error.response?.data?.message) {
         toast.error(error.response.data.message);
       } else {
-        toast.error("Không thể kết nối server");
+        toast.error("サーバーに接続できません");
       }
     } finally {
       setLoading(false);
@@ -54,36 +51,36 @@ const Login = () => {
               <img src={logo} alt="VTI Academy" className="logo" />
             </div>
 
-            <h1>Chào mừng trở lại</h1>
-            <p>Đăng nhập vào hệ thống quản lý</p>
+            <h1>おかえりなさい</h1>
+            <p>管理システムにログイン</p>
           </div>
 
           <Form layout="vertical" className="login-form" onFinish={onFinish}>
             <Form.Item
-              label="Email hoặc Username"
+              label="メール または ユーザー名"
               name="emailOrUsername"
               rules={[
                 {
                   required: true,
-                  message: "Vui lòng nhập email hoặc username",
+                  message: "メールまたはユーザー名を入力してください",
                 },
               ]}
             >
               <Input
                 prefix={<FontAwesomeIcon icon={faUser} />}
-                placeholder="Email hoặc username"
+                placeholder="メール または ユーザー名"
                 size="large"
               />
             </Form.Item>
 
             <Form.Item
-              label="Mật khẩu"
+              label="パスワード"
               name="password"
-              rules={[{ required: true, message: "Vui lòng nhập mật khẩu" }]}
+              rules={[{ required: true, message: "パスワードを入力してください" }]}
             >
               <Input.Password
                 prefix={<FontAwesomeIcon icon={faLock} />}
-                placeholder="Nhập mật khẩu"
+                placeholder="パスワードを入力"
                 size="large"
               />
             </Form.Item>
@@ -92,7 +89,7 @@ const Login = () => {
                 className="forgot-password"
                 onClick={() => setOpenForgot(true)}
               >
-                Quên mật khẩu?
+                パスワードをお忘れですか？
               </a>
             </div>
             <Button
@@ -102,7 +99,7 @@ const Login = () => {
               block
               size="large"
             >
-              Đăng nhập
+              ログイン
             </Button>
           </Form>
 
@@ -114,12 +111,11 @@ const Login = () => {
         {/* RIGHT INFO */}
         <div className="info-side">
           <div className="info-content">
-            <h2>Hệ thống Quiz</h2>
-            <p>Quản lý kỳ thi và kết quả học tập một cách chuyên nghiệp</p>
+            <h2>Quiz システム</h2>
+            <p>試験と学習成果をプロフェッショナルに管理</p>
           </div>
         </div>
       </div>
-      {/* MODAL QUÊN MẬT KHẨU */}
       <Quenmatkhau open={openForgot} onClose={() => setOpenForgot(false)} />
     </div>
   );

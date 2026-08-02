@@ -41,7 +41,7 @@ const Capnhatthongtin = ({
 
   return (
     <Modal
-      title="Cập nhật thông tin cá nhân"
+      title="プロフィール更新"
       open={open}
       onCancel={handleCancel}
       footer={null}
@@ -53,30 +53,27 @@ const Capnhatthongtin = ({
         layout="vertical"
         onFinish={handleSubmit}
       >
-        {/* FULL NAME */}
         <Form.Item
-          label="Họ và tên"
+          label="氏名"
           name="fullName"
           rules={[
-            { required: true, message: "Vui lòng nhập họ và tên!" },
+            { required: true, message: "氏名を入力してください" },
           ]}
         >
-          <Input placeholder="Nhập họ và tên" size="large" />
+          <Input placeholder="氏名を入力" size="large" />
         </Form.Item>
 
-        {/* EMAIL */}
         <Form.Item
-          label="Email"
+          label="メールアドレス"
           name="email"
           rules={[
-            { required: true, message: "Vui lòng nhập email!" },
-            { type: "email", message: "Email không hợp lệ!" },
+            { required: true, message: "メールアドレスを入力してください" },
+            { type: "email", message: "メールアドレスの形式が正しくありません" },
           ]}
         >
-          <Input placeholder="Nhập email" size="large" />
+          <Input placeholder="メールアドレスを入力" size="large" />
         </Form.Item>
 
-        {/* BUTTON */}
         <Form.Item style={{ marginBottom: 0 }}>
           <div
             style={{
@@ -86,7 +83,7 @@ const Capnhatthongtin = ({
             }}
           >
             <Button onClick={handleCancel} size="large">
-              Hủy
+              キャンセル
             </Button>
 
             <Button
@@ -95,7 +92,7 @@ const Capnhatthongtin = ({
               size="large"
               loading={loading}
             >
-              Cập nhật
+              更新
             </Button>
           </div>
         </Form.Item>

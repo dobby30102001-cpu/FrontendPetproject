@@ -10,14 +10,14 @@ const ResetPassword = () => {
   useEffect(() => {
     const email = localStorage.getItem("resetEmail");
     if (!email) {
-      toast.error("Vui lòng nhập email trước khi đặt lại mật khẩu!");
+      toast.error("パスワードをリセットする前にメールアドレスを入力してください");
       navigate("/");
     }
   }, [navigate]);
   const onFinish = async (values) => {
     const { otp, password, confirmPassword } = values;
     if (password !== confirmPassword) {
-      toast.error("Mật khẩu nhập lại không khớp!");
+      toast.error("パスワードが一致しません");
       return;
     }
 
@@ -31,14 +31,14 @@ const ResetPassword = () => {
         confirmNewPassword: confirmPassword,
       });
 
-      toast.success(res.data.message || "Đặt lại mật khẩu thành công!");
+      toast.success(res.data.message || "パスワードをリセットしました");
 
       localStorage.removeItem("resetEmail");
 
       navigate("/");
     } catch (error) {
       toast.error(
-        error.response?.data?.message || "Đặt lại mật khẩu thất bại!",
+        error.response?.data?.message || "パスワードのリセットに失敗しました",
       );
     }
   };
@@ -49,7 +49,7 @@ const ResetPassword = () => {
           <CloseOutlined />
         </div>
         <div className="reset-password-header">
-          <h2>Đặt lại mật khẩu</h2>
+          <h2>パスワードのリセット</h2>
         </div>
 
         <Form
@@ -58,37 +58,37 @@ const ResetPassword = () => {
           className="reset-password-form"
         >
           <Form.Item
-            label="Mã OTP"
+            label="OTP コード"
             name="otp"
             rules={[
-              { required: true, message: "Vui lòng nhập mã OTP" },
-              { len: 6, message: "OTP phải gồm 6 số" },
+              { required: true, message: "OTP コードを入力してください" },
+              { len: 6, message: "OTP は 6 桁で入力してください" },
             ]}
           >
-            <Input placeholder="Nhập mã OTP 6 số" />
+            <Input placeholder="6 桁の OTP コードを入力" />
           </Form.Item>
 
           <Form.Item
-            label="Mật khẩu mới"
+            label="新しいパスワード"
             name="password"
             rules={[
-              { required: true, message: "Vui lòng nhập mật khẩu mới" },
-              { min: 6, message: "Mật khẩu phải có ít nhất 6 ký tự" },
+              { required: true, message: "新しいパスワードを入力してください" },
+              { min: 6, message: "パスワードは 6 文字以上で入力してください" },
             ]}
           >
-            <Input.Password placeholder="Nhập mật khẩu mới" />
+            <Input.Password placeholder="新しいパスワードを入力" />
           </Form.Item>
 
           <Form.Item
-            label="Nhập lại mật khẩu"
+            label="パスワード確認"
             name="confirmPassword"
-            rules={[{ required: true, message: "Vui lòng nhập lại mật khẩu" }]}
+            rules={[{ required: true, message: "パスワードを再入力してください" }]}
           >
-            <Input.Password placeholder="Nhập lại mật khẩu" />
+            <Input.Password placeholder="パスワードを再入力" />
           </Form.Item>
 
           <Button type="primary" htmlType="submit" block>
-            Đặt lại mật khẩu
+            パスワードをリセット
           </Button>
         </Form>
       </div>
