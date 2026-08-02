@@ -29,7 +29,7 @@ const UserHeader = ({ title, description, buttonText, handleAdd, extra }) => {
             icon={<FontAwesomeIcon icon={faPlus} />}
             onClick={handleAdd}
           >
-            {buttonText || "Thêm"}
+            {buttonText || "追加"}
           </Button>
         )}
       </Space>

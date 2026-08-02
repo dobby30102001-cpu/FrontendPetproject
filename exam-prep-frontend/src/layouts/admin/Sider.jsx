@@ -11,30 +11,30 @@ import '../../assets/styles/Sider.css'
 import logo from '../../assets/images/logo.png'
 
 const adminMenuItems = [
-  { 
-    id: 1, 
-    title: 'Dashboard', 
+  {
+    id: 1,
+    title: 'ダッシュボード',
     path: '/admin',
-    icon: faChartLine 
+    icon: faChartLine
   },
-  { 
-    id: 2, 
-    title: 'Quản lý người dùng', 
+  {
+    id: 2,
+    title: 'ユーザー管理',
     path: '/admin/users',
-    icon: faUsers 
+    icon: faUsers
   },
-  { 
-    id: 3, 
-    title: 'Quản lý lớp', 
+  {
+    id: 3,
+    title: 'クラス管理',
     path: '/admin/classes',
-    icon: faGraduationCap 
+    icon: faGraduationCap
   },
-  
-  { 
-    id: 4, 
-    title: 'Gán giáo viên cho lớp', 
+
+  {
+    id: 4,
+    title: '教員割当',
     path: '/admin/assign-teacher',
-    icon: faChalkboardUser 
+    icon: faChalkboardUser
   },
 ]
 

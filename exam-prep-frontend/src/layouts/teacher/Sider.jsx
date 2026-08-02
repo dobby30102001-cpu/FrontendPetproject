@@ -14,31 +14,31 @@ import logo from "../../assets/images/logo.png";
 const adminMenuItems = [
   {
     id: 1,
-    title: "Dashboard",
+    title: "ダッシュボード",
     path: "/teacher",
     icon: faGauge,
   },
   {
     id: 2,
-    title: "Quản lý đề thi",
+    title: "試験管理",
     path: "/teacher/exams",
     icon: faFileLines,
   },
   {
     id: 3,
-    title: "Quản lý câu hỏi",
+    title: "問題管理",
     path: "/teacher/questions",
     icon: faClipboardQuestion,
   },
   {
     id: 4,
-    title: "Quản lý điểm thi",
+    title: "成績管理",
     path: "/teacher/students",
     icon: faUsers,
   },
   {
     id: 5,
-    title: "Quản lý đề thi theo lớp",
+    title: "クラス別試験管理",
     path: "/teacher/exam-classes",
     icon: faChalkboard,
   },

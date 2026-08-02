@@ -10,42 +10,42 @@ import '../../assets/styles/Sider.css'
 import logo from '../../assets/images/logo.png'
 
 const studentMenuItems = [
-  { 
-    id: 1, 
-    title: 'Dashboard', 
+  {
+    id: 1,
+    title: 'ダッシュボード',
     path: '/student',
-    icon: faChartLine 
+    icon: faChartLine
   },
-  { 
-    id: 2, 
-    title: 'Thi thử',
+  {
+    id: 2,
+    title: '模擬試験',
     path: '/student/bai-thi-luyen-tap',
-    icon: faClipboardList 
+    icon: faClipboardList
   },
-  { 
-    id: 3, 
-    title: 'Thi thật',
+  {
+    id: 3,
+    title: '本試験',
     path: '/student/bai-thi',
-    icon: faClipboardList 
+    icon: faClipboardList
   },
-  { 
-    id:4, 
-    title: 'Lịch sử thi thử',
+  {
+    id:4,
+    title: '模擬試験履歴',
     path: '/student/lich-su-luyen-tap',
-    icon: faClipboardList 
+    icon: faClipboardList
   },
-  { 
-    id:5, 
-    title: 'Lịch sử thi thật', 
+  {
+    id:5,
+    title: '本試験履歴',
     path: '/student/lich-su-thi',
-    icon: faClipboardList 
+    icon: faClipboardList
   },
 
-  { 
-    id: 5, 
-    title: 'Đề thi yêu thích', 
+  {
+    id: 5,
+    title: 'お気に入り試験',
     path: '/student/de-thi-yeu-thich',
-    icon: faHeart 
+    icon: faHeart
   },
 ]
 

@@ -24,11 +24,11 @@ const Header = () => {
         email: values.email,
       };
       await updateProfileApi(updateData);
-      toast.success("Cập nhật thông tin thành công!");
+      toast.success("プロフィールを更新しました");
       await refreshUser();
     } catch (error) {
       const msg =
-        error.response?.data?.message || "Email đã tồn tại!";
+        error.response?.data?.message || "このメールアドレスは既に使用されています";
       toast.error(msg);
       throw new Error(msg);
     }
@@ -46,23 +46,20 @@ const Header = () => {
 
       const msg =
         error.response?.data?.message ||
-        "Đổi mật khẩu thất bại!";
+        "パスワードの変更に失敗しました";
 
       throw new Error(msg);
     }
   };
 
   const handleLogout = () => {
-    // Xóa tất cả thông tin user trong localStorage
     localStorage.removeItem("userRole");
     localStorage.removeItem("userInfo");
     localStorage.removeItem("accessToken");
 
-    // Gọi logout từ AuthContext để cập nhật state
     logout();
 
-    message.success("Đăng xuất thành công!");
-    // Chuyển về trang login
+    message.success("ログアウトしました");
     window.location.href = "/";
   };
 
@@ -70,13 +67,13 @@ const Header = () => {
     {
       key: "profile",
       icon: <FontAwesomeIcon icon={faUser} />,
-      label: "Cập nhật thông tin",
+      label: "プロフィール更新",
       onClick: () => setIsModalOpen(true),
     },
     {
       key: "password",
       icon: <FontAwesomeIcon icon={faKey} />,
-      label: "Đổi mật khẩu",
+      label: "パスワード変更",
       onClick: () => setIsPasswordModalOpen(true),
     },
     {
@@ -85,7 +82,7 @@ const Header = () => {
     {
       key: "logout",
       icon: <FontAwesomeIcon icon={faSignOutAlt} />,
-      label: "Đăng xuất",
+      label: "ログアウト",
       danger: true,
       onClick: handleLogout,
     },
