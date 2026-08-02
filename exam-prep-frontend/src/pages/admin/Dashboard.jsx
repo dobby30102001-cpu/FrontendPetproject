@@ -25,7 +25,7 @@ const Dashboard = () => {
         setTotalTeachers(teachers.data)
 
       } catch (error) {
-        console.error("Lỗi load dashboard:", error)
+        console.error("Failed to load dashboard:", error)
       }
     }
 
@@ -34,40 +34,37 @@ const Dashboard = () => {
 
   return (
     <div style={{ padding: '24px' }}>
-      <h1 style={{ marginBottom: '24px' }}>Dashboard Admin</h1>
+      <h1 style={{ marginBottom: '24px' }}>管理者ダッシュボード</h1>
       <p style={{ marginBottom: '32px', color: '#666' }}>
-        Chào mừng đến với trang quản trị
+        管理画面へようこそ
       </p>
 
       <Row gutter={[16, 16]}>
 
-        {/* Tổng lớp */}
         <Col xs={24} sm={12} lg={6}>
           <Card>
             <Statistic
-              title="Tổng số lớp học"
+              title="クラス数"
               value={totalClasses}
               prefix={<FontAwesomeIcon icon={faUsers} />}
             />
           </Card>
         </Col>
 
-        {/* Học sinh */}
         <Col xs={24} sm={12} lg={6}>
           <Card>
             <Statistic
-              title="Tổng số học sinh"
+              title="学生数"
               value={totalStudents}
               prefix={<FontAwesomeIcon icon={faUserGraduate} />}
             />
           </Card>
         </Col>
 
-        {/* Giáo viên */}
         <Col xs={24} sm={12} lg={6}>
           <Card>
             <Statistic
-              title="Tổng số giáo viên"
+              title="教員数"
               value={totalTeachers}
               prefix={<FontAwesomeIcon icon={faChalkboardTeacher} />}
             />

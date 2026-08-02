@@ -69,7 +69,7 @@ const Classes = () => {
       setCurrentClassUserIds(currentIds)
       setDisabledUserIds(disabledIds)
     } catch {
-      toast.error('Lỗi refresh sinh viên!')
+      toast.error('学生リストの再取得に失敗しました')
     }
   }
 
@@ -88,7 +88,7 @@ const Classes = () => {
       setPage(data.number)
 
     } catch {
-      toast.error('Lỗi tải dữ liệu!')
+      toast.error('データの読み込みに失敗しました')
     } finally {
       setLoading(false)
     }
@@ -125,16 +125,16 @@ const Classes = () => {
 const handleDelete = async (id) => {
   try {
     await deleteClass(id)
-    toast.success('Xóa thành công!')
+    toast.success('削除しました')
 
     if (classesData.length === 1 && page > 0) {
-      setPage(page - 1) // quay về trang trước
+      setPage(page - 1)
     } else {
-      fetchClasses(page) // reload bình thường
+      fetchClasses(page)
     }
 
   } catch {
-    toast.error('Lỗi xóa!')
+    toast.error('削除に失敗しました')
   }
 }
 
@@ -164,7 +164,7 @@ const handleDelete = async (id) => {
     setDisabledUserIds(disabledIds)
 
   } catch {
-    toast.error('Lỗi load sinh viên!')
+    toast.error('学生の読み込みに失敗しました')
   } finally {
     setAddUserLoading(false)
   }
@@ -180,7 +180,7 @@ const handleDelete = async (id) => {
 
     await addUsersToClass(selectedClassForUsers.id, validIds)
 
-    toast.success('Cập nhật sinh viên thành công!')
+    toast.success('学生を更新しました')
 
     // ✅ reload lại students trong modal
     await refreshStudents()
@@ -192,7 +192,7 @@ const handleDelete = async (id) => {
 
   } catch (err) {
     console.error(err)
-    toast.error('Lỗi thêm sinh viên!')
+    toast.error('学生の追加に失敗しました')
   } finally {
     setAddUserLoading(false)
   }
@@ -204,10 +204,10 @@ const handleSubmit = async (values) => {
   try {
     if (isEditMode) {
       await updateClass(selectedClass.id, values)
-      toast.success('Cập nhật thành công!')
+      toast.success('更新しました')
     } else {
       await createClass(values)
-      toast.success('Tạo thành công!')
+      toast.success('作成しました')
     }
 
     setIsModalOpen(false)
@@ -217,8 +217,8 @@ const handleSubmit = async (values) => {
   } catch (error) {
     const message =
       error?.response?.data?.message === 'Class name existed'
-        ? 'Tên lớp đã tồn tại!'
-        : error?.response?.data?.message || 'Lỗi hệ thống!'
+        ? 'このクラス名は既に存在します'
+        : error?.response?.data?.message || 'システムエラーが発生しました'
 
     toast.error(message)
   }
@@ -246,7 +246,7 @@ const handleSubmit = async (values) => {
 
     } catch (error) {
       console.error(error)
-      toast.error('Lỗi load sinh viên!')
+      toast.error('学生の読み込みに失敗しました')
     } finally {
       setViewLoading(false)
     }
@@ -255,9 +255,9 @@ const handleSubmit = async (values) => {
   return (
     <div style={{ padding: 24 }}>
       <ClassesHeader
-        title="Quản lý lớp"
-        description="Tạo, chỉnh sửa, xóa lớp học"
-        buttonText="Tạo lớp"
+        title="クラス管理"
+        description="クラスの作成・編集・削除"
+        buttonText="クラス作成"
         handleAdd={handleAdd}
       />
 

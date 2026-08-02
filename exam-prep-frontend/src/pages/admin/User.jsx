@@ -43,7 +43,7 @@ const User = () => {
       setUsers(mappedData)
       setTotal(res.data?.data?.totalElements || 0)
     } catch (error) {
-      toast.error('Lỗi khi tải danh sách!' + error.message)
+      toast.error('リストの読み込みに失敗しました: ' + error.message)
     } finally {
       setLoading(false)
     }
@@ -107,7 +107,7 @@ const User = () => {
         )
       )
 
-      toast.success('Cập nhật thành công!')
+      toast.success('更新しました')
     } else {
       // ================= ADD =================
       const payload = {
@@ -125,14 +125,14 @@ const User = () => {
       // 🔥 gọi lại API để lấy data mới nhất
       await fetchUsers(0)
 
-      toast.success('Thêm thành công!')
+      toast.success('追加しました')
     }
 
     setIsModalOpen(false)
     form.resetFields()
   } catch (error) {
     toast.error(
-      error?.response?.data?.message || 'Lỗi xử lý!'
+      error?.response?.data?.message || '処理に失敗しました'
     )
     console.error(error)
   } finally {
@@ -159,14 +159,13 @@ const User = () => {
         await lockUser(record.id)
       }
 
-      toast.success(newStatus === 'ACTIVED' ? 'Đã kích hoạt' : 'Đã khóa')
+      toast.success(newStatus === 'ACTIVED' ? '有効化しました' : 'ロックしました')
     } catch {
-      // rollback
       setUsers(users.map(u =>
         u.id === record.id ? { ...u, status: record.status } : u
       ))
 
-      toast.error('Lỗi!')
+      toast.error('エラーが発生しました')
     } finally {
       setLoading(false)
     }
@@ -175,9 +174,9 @@ const User = () => {
   return (
     <div style={{ padding: 24 }}>
       <UserHeader
-        title="Quản lý người dùng"
-        description="Quản lý tài khoản"
-        buttonText="Thêm"
+        title="ユーザー管理"
+        description="アカウントの管理"
+        buttonText="追加"
         handleAdd={handleAdd}
       />
 

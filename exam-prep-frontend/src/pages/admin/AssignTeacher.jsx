@@ -66,7 +66,7 @@ const AssignTeacher = () => {
 
     } catch (err) {
       console.error(err)
-      toast.error('Lỗi load danh sách lớp!')
+      toast.error('クラスリストの読み込みに失敗しました')
     } finally {
       setClassLoading(false)
     }
@@ -107,7 +107,7 @@ const AssignTeacher = () => {
 
     } catch (err) {
       console.error(err)
-      toast.error('Lỗi load giáo viên!')
+      toast.error('教員の読み込みに失敗しました')
     } finally {
       setTeacherLoading(false)
     }
@@ -142,14 +142,14 @@ const AssignTeacher = () => {
         )
       )
 
-      toast.success('Phân công giáo viên thành công')
+      toast.success('教員を割り当てました')
 
       setIsModalOpen(false)
       setSelectedClass(null)
 
     } catch (err) {
       console.error(err)
-      toast.error('Lỗi phân công giáo viên!')
+      toast.error('教員の割り当てに失敗しました')
     } finally {
       setTeacherLoading(false)
     }
@@ -173,7 +173,7 @@ const AssignTeacher = () => {
       setClassTeachers(teacherList)
 
     } catch (err) {
-      toast.error('Lỗi load giáo viên!' + err)
+      toast.error('教員の読み込みに失敗しました: ' + err)
     } finally {
       setTeacherViewLoading(false)
     }
@@ -197,7 +197,7 @@ const AssignTeacher = () => {
       setStudents(studentList)
 
     } catch (err) {
-      toast.error('Lỗi load sinh viên!' + err)
+      toast.error('学生の読み込みに失敗しました: ' + err)
     } finally {
       setStudentLoading(false)
     }
@@ -211,8 +211,8 @@ const AssignTeacher = () => {
   return (
     <div style={{ padding: 20 }}>
       <AssignTeacherHeader
-        title="Phân công giáo viên"
-        description="Quản lý việc phân công giáo viên"
+        title="教員割当"
+        description="教員のクラス割り当てを管理"
       />
 
       <AssignTeacherFilter
