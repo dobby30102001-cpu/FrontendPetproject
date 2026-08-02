@@ -2,13 +2,18 @@ import axios from "axios";
 
 // Normalize the API base URL so common env-var mistakes still work:
 //   - trim whitespace
-//   - if scheme is missing, prepend https:// (e.g. "api.example.com/api"
-//     becomes "https://api.example.com/api"). Local dev without scheme
-//     is unusual; if you truly need http://, write it explicitly.
+//   - if the value looks like a Markdown link "[url](url)" (a real bug
+//     we hit when a URL was pasted from a rendered chat), extract the
+//     first http(s) URL out of it.
+//   - if scheme is missing, prepend https://.
 //   - drop trailing slash so paths like "/auth/login" don't become "//auth/login".
 function normalizeBaseURL(raw) {
   if (!raw) return "";
   let url = String(raw).trim();
+  if (/[\[\]()]/.test(url)) {
+    const match = url.match(/https?:\/\/[^\s\])]+/i);
+    if (match) url = match[0];
+  }
   if (!/^https?:\/\//i.test(url)) {
     url = "https://" + url;
   }
