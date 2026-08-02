@@ -1,11 +1,11 @@
 // file
 import QuestionTable from "../../components/teacher/QuestionTable";
-import UserHeader from "../../components/user/UserHeader";
+import UserHeader from "../../components/common/UserHeader";
 import AppPagination from "../../components/common/AppPagination";
 import StatsCards from "../../components/common/StatsCards";
-import CreateQuestionModal from "../../components/modal/teacher/Createquestionmodal";
-import EditQuestionModal from "../../components/modal/teacher/Editquestionmodal";
-import ViewQuestionDrawer from "../../components/modal/teacher/Viewquestiondrawer";
+import CreateQuestionModal from "../../components/teacher/modals/Createquestionmodal";
+import EditQuestionModal from "../../components/teacher/modals/Editquestionmodal";
+import ViewQuestionDrawer from "../../components/teacher/modals/Viewquestiondrawer";
 import questionService from "../../services/teacher/questionService";
 // thuvien
 import { useState, useEffect } from "react";

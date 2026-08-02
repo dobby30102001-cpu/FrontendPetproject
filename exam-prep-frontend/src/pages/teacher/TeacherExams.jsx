@@ -1,8 +1,8 @@
-import UserHeader from "../../components/user/UserHeader";
+import UserHeader from "../../components/common/UserHeader";
 import ExamTable from "../../components/teacher/ExamTable";
 import * as examsAPI from "../../services/teacher/examService.js";
-import ExamPreviewModal from "../../components/modal/teacher/ExamPreviewModal";
-import ExamFormModal from "../../components/modal/teacher/ExamFormModal.jsx";
+import ExamPreviewModal from "../../components/teacher/modals/ExamPreviewModal";
+import ExamFormModal from "../../components/teacher/modals/ExamFormModal";
 import AppPagination from "../../components/common/AppPagination.jsx";
 import StatsCards from "../../components/common/StatsCards";
 import examService from "../../services/teacher/examService.js";

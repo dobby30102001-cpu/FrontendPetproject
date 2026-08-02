@@ -3,9 +3,9 @@ import AssignTeacherHeader from '../../components/assignTeacher/AssignTeacherHea
 import AssignTeacherFilter from '../../components/assignTeacher/AssignTeacherFilter'
 import AssignTeacherTable from '../../components/assignTeacher/AssignTeacherTable'
 import { toast } from 'react-toastify'
-import Add from '../../components/modal/assignTeacher/Add'
-import ViewTeacher from '../../components/modal/assignTeacher/ViewTeacher'
-import ViewStudent from '../../components/modal/assignTeacher/ViewStudent'
+import Add from '../../components/assignTeacher/modals/Add'
+import ViewTeacher from '../../components/assignTeacher/modals/ViewTeacher'
+import ViewStudent from '../../components/assignTeacher/modals/ViewStudent'
 
 import {
   getTeachers,
@@ -16,7 +16,7 @@ import {
 import {
   getClasses,
   addTeachersToClass
-} from '../../services/classes.js'
+} from '../../services/classService.js'
 
 const AssignTeacher = () => {
   const [total, setTotal] = useState(0)

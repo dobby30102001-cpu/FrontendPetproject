@@ -102,7 +102,7 @@ export default function ExamFormModal({
         questionIds: selectedIds,
       });
     } catch (error) {
-      console.log("Validate failed:", error);
+      console.error("Validate failed:", error);
     }
   };
 

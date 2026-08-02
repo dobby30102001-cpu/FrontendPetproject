@@ -3,7 +3,7 @@ import { Modal, Form, Input, Button } from "antd";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faLock } from "@fortawesome/free-solid-svg-icons";
 import { toast } from "react-toastify";
-import "../../../assets/styles/ChangePassword.css";
+import "../../assets/styles/ChangePassword.css";
 const Capnhatmatkhau = ({
   open = false,
   onCancel = () => {},

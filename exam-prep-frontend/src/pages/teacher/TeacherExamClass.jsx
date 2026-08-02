@@ -1,9 +1,9 @@
 import { useState, useMemo, useEffect } from "react";
-import UserHeader from "../../components/user/UserHeader";
+import UserHeader from "../../components/common/UserHeader";
 import ExamClassTable from "../../components/teacher/ExamClassTable";
-import ViewClassDrawer from "../../components/modal/teacher/ViewClassDrawer";
+import ViewClassDrawer from "../../components/teacher/modals/ViewClassDrawer";
 import AppPagination from "../../components/common/AppPagination";
-import EditClassExamModal from "../../components/modal/teacher/EditClassExamModal";
+import EditClassExamModal from "../../components/teacher/modals/EditClassExamModal";
 import "../../assets/styles/User.css";
 import * as examsAPI from "../../services/teacher/examService.js";
 
