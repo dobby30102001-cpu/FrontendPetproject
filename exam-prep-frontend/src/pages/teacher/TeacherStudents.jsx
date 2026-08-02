@@ -1,7 +1,7 @@
 import { useState, useMemo, useEffect } from "react";
-import UserHeader from "../../components/user/UserHeader";
+import UserHeader from "../../components/common/UserHeader";
 import AppPagination from "../../components/common/AppPagination";
-import ViewStudentDrawer from "../../components/modal/teacher/ViewStudentDrawer";
+import ViewStudentDrawer from "../../components/teacher/modals/ViewStudentDrawer";
 import "../../assets/styles/User.css";
 import "../../assets/styles/teacher/Question.css";
 

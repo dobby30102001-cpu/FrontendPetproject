@@ -7,7 +7,7 @@ import {
   updateClass,
   deleteClass,
   addUsersToClass
-} from '../../services/classes.js'
+} from '../../services/classService.js'
 
 import {
   getStudentsByClass,
@@ -18,9 +18,9 @@ import ClassesHeader from '../../components/classes/ClassesHeader'
 import ClassesFilter from '../../components/classes/ClassesFilter'
 import ClassesTable from '../../components/classes/ClassesTable'
 
-import Add from '../../components/modal/classes/Add'
-import AddUser from '../../components/modal/classes/AddUser.jsx'
-import View from '../../components/modal/classes/View.jsx'
+import Add from '../../components/classes/modals/Add'
+import AddUser from '../../components/classes/modals/AddUser'
+import View from '../../components/classes/modals/View'
 
 const Classes = () => {
   const [disabledUserIds, setDisabledUserIds] = useState([])

@@ -5,9 +5,9 @@ import { faUser, faLock } from "@fortawesome/free-solid-svg-icons";
 import logo from "../../assets/images/logo.png";
 import "../../assets/styles/Login.css";
 import { useNavigate } from "react-router-dom";
-import Quenmatkhau from "../../components/modal/auth/Quenmatkhau";
+import Quenmatkhau from "../../components/auth/Quenmatkhau";
 import { toast } from "react-toastify";
-import { useAuth } from "../../hooks/useAuth";
+import { useAuth } from "../../context/AuthContext";
 const Login = () => {
   const [loading, setLoading] = React.useState(false);
   const [openForgot, setOpenForgot] = React.useState(false);

@@ -2,10 +2,10 @@ import React, { useState, useMemo, useEffect } from 'react'
 import { Form } from 'antd'
 import { toast } from 'react-toastify'
 import '../../assets/styles/User.css'
-import UserHeader from '../../components/user/UserHeader'
+import UserHeader from '../../components/common/UserHeader'
 import UserFilter from '../../components/user/UserFilter'
 import UserTable from '../../components/user/UserTable'
-import Add from '../../components/modal/user/Add'
+import Add from '../../components/user/modals/Add'
 import { getUsers, unlockUser, lockUser ,updateUser,addUser} from '../../services/userService.js'
 const User = () => {
   const [users, setUsers] = useState([])

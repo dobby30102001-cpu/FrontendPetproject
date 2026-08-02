@@ -3,6 +3,22 @@
 React + Vite で作った、オンライン試験システムのフロントエンドです。
 バックエンドは [Petproject/exam-prep-backend](https://github.com/dobby30102001-cpu/Petproject) と連携します。
 
+## デモ環境
+
+- **Frontend**: https://frontendpetproject.onrender.com
+- **Backend API**: https://petproject-barj.onrender.com
+- **Swagger UI**: https://petproject-barj.onrender.com/swagger-ui.html
+
+**デモアカウント**（パスワードは全て `1234`）:
+
+| ロール | ユーザー名 |
+|--------|------------|
+| 管理者 | `admin1` / `admin2` |
+| 教員 | `teacher1` / `teacher2` |
+| 学生 | `student1` / `student2` |
+
+> ⚠ **初回アクセス時にサーバー起動のため 30〜60 秒ほどお待ちください**（Render 無料プランのスリープ機能のため）。
+
 ## 画面構成
 
 | ロール | 画面例 |

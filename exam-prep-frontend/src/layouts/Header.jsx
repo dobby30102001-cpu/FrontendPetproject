@@ -6,8 +6,8 @@ import { AuthContext } from '../context/AuthContext';
 import { updateProfileApi, changePasswordApi } from '../services/userService';
 import '../assets/styles/Header.css';
 import { toast } from 'react-toastify';
-import Capnhatthongtin from '../components/modal/auth/Capnhatthongtin';
-import Capnhatmatkhau from '../components/modal/auth/Capnhatmatkhau';
+import Capnhatthongtin from '../components/auth/Capnhatthongtin';
+import Capnhatmatkhau from '../components/auth/Capnhatmatkhau';
 
 const Header = () => {
  const { logout, userFullName, refreshUser, user } = useContext(AuthContext);

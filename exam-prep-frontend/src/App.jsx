@@ -1,14 +1,14 @@
 import React from "react";
-import Login from "./pages/login/Login";
+import Login from "./pages/auth/Login";
 import StudentLayout from "./layouts/student/StudentLayout";
 import TeacherLayout from "./layouts/teacher/TeacherLayout";
 import AdminLayouts from "./layouts/admin/AdminLayout";
-import ResetPassword from "./pages/login/ResetPassword";
+import ResetPassword from "./pages/auth/ResetPassword";
 import Dashboard from "./pages/admin/Dashboard";
 import { Routes, Route } from "react-router-dom";
 import { ToastContainer } from "react-toastify";
-import ProtectedRoute from "./route/ProtectedRoute";
-import PublicRoute from "./route/PublicRoute";
+import ProtectedRoute from "./routes/ProtectedRoute";
+import PublicRoute from "./routes/PublicRoute";
 import NotFound from "./pages/NotFound";
 import User from "./pages/admin/User";
 import Classes from "./pages/admin/Classes";
